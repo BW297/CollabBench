@@ -24,7 +24,7 @@ Complete the “Install veRL” section and any environment-specific steps you n
 
 Then install and configure the Cook-MultiPlayer running environment:
 
-- **[Cook-MultiPlayer](../../Running/Cook-MultiPlayer/README.md)** — conda env, dependencies, Overcooked-AI, and ProAgent usage.
+- **[Cook-MultiPlayer](../../Evaluation/Running/Cook-MultiPlayer/README.md)** — conda env, dependencies, Overcooked-AI, and ProAgent usage.
 
 Ensure you can run the example script under “Usage” (e.g. `cd src && bash exp.sh`) before starting training.
 

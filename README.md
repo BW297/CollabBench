@@ -4,7 +4,7 @@ We propose **CollabBench**, a benchmark for **systematically evaluating and trai
 
 CollabBench focuses on collaborative agent research, aiming to facilitate research on LLM-based agents in **efficient and affective interactions**.
 
-This repository is organized into the following **five sections**.
+This repository is organized into the following **four sections**.
 
 ---
 
@@ -47,46 +47,50 @@ cd Cook-MultiPlayer
 
 ---
 
-## 3️⃣ Trajectory Collection
+## 3️⃣ Evaluation
 
-This section introduces the **trajectory rollout and data collection pipeline** for the two multi-player game environments.
+This section describes the **trajectory data collection and affective LLM judge** used in CollabBench for the two multi-player game environments.
+
+```bash
+cd Evaluation
+````
+
+### trajectory data collection
 
 ```bash
 cd Running
 ````
 
-### 🎮 CWAH-MultiPlayer
+#### 🎮 CWAH-MultiPlayer
 
 ```bash
 cd CWAH-MultiPlayer
 ```
 
-📄 **Details:** [CWAH-MultiPlayer](Running/CWAH-MultiPlayer/README.md)
+📄 **Details:** [CWAH-MultiPlayer](Evaluation/Running/CWAH-MultiPlayer/README.md)
 
 
-### 🎮 Cook-MultiPlayer
+#### 🎮 Cook-MultiPlayer
 
 ```bash
 cd Cook-MultiPlayer
 ```
 
-📄 **Details:** [Cook-MultiPlayer](Running/Cook-MultiPlayer/README.md)
+📄 **Details:** [Cook-MultiPlayer](Evaluation/Running/Cook-MultiPlayer/README.md)
 
 ---
 
-## 4️⃣ Evaluation
-
-This section describes the **affective evaluation protocols** used in CollabBench.
+### Affective LLM Judge
 
 ```bash
-cd Evaluation
+cd Judge
 ```
 
-📄 **Details:** [Evaluation](Evaluation/README.md)
+📄 **Details:** [Evaluation](Evaluation/Judge/README.md)
 
 ---
 
-## 5️⃣ Player Trajectory Demonstration
+## 4️⃣ Player Trajectory Demonstration
 
 We visualize representative trajectories for **five typical player types** (GIF format) to illustrate their collaboration behaviors.
 
