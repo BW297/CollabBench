@@ -24,12 +24,22 @@ Complete the “Install veRL” section and any environment-specific steps you n
 
 Then install and configure the CWAH-MultiPlayer running environment (VirtualHome API and simulator):
 
-- **[CWAH-MultiPlayer](../../Evaluation/Running/CWAH-MultiPlayer/README.md)** 
+- **[CWAH-MultiPlayer (Running) README](../../Evaluation/Running/CWAH-MultiPlayer/README.md)** — VirtualHome clone, executable download, conda env, and dependencies.
 
-Go into `Training/agent_system/environments/env_package/cwah`:
+First go into `Training/agent_system/environments/env_package/cwah`, then install and configure according to the CWAH-MultiPlayer (Running) README.
 
 ```bash
 cd Training/agent_system/environments/env_package/cwah
+# Then install and configure according to the CWAH-MultiPlayer (Running) README
+```
+Ensure the final directory layout includes the game engine files and executables:
+
+```bash
+├── Training/agent_system/environments/env_package/cwah/
+│   ├── cwah/                 
+│   ├── executable/ 
+│   ├── virtualhome/                
+│   └── ...  
 ```
 
 Ensure the CWAH backend (API server used by environment workers) is available at the URL you will set in the training script (see below).
