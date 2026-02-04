@@ -1,4 +1,4 @@
-# CoELA LLM Judge (High-level Action Windows)
+# LLM Judge (High-level Action Windows)
 
 This directory provides the LLM-Judge pipeline (intermediate files can be saved):
 1) Build windows: `windows.jsonl` + optional `preview.txt`
@@ -14,8 +14,9 @@ Windowing rules:
 - Each window is evaluated by 3 prompts and yields 3 scores: `Helpfulness / Trustfulness / Empathy`
 - Scoring is penalty-based: max 5, outputs violation points and evidence
 
+
 ## Inputs
-Supported inputs:
+Supported inputs: (Take `CWAH-MultiPlayer` as an example)
 - A single `logs_agent_*.pik`
 - A single run directory (containing `logs_agent_*.pik`)
 - A runs root (auto-searches `*/logs_agent_*.pik`)
@@ -66,19 +67,22 @@ Common re-run cases:
 - Produce detailed/compact results: Step6 only
 - Model summary: Step7 only
 
+## Cook-MultiPlayer
+Cook-MultiPlayer `actions.json` evaluation is handled by `cook.py` (outputs under `Running/Cook-MultiPlayer/src/actions`).
+
 ## Examples
 Quick multi-run scripts are provided (set API env vars before running):
 ```bash
-export OPENAI_API_BASE="http://localhost:8000/v1"
+export OPENAI_API_BASE="..."
 export OPENAI_API_KEY="..."
-export OPENAI_MODEL="gpt-4o-mini"
+export OPENAI_MODEL="..."
 
 bash run_multi_cwah.sh
 bash run_multi_cook.sh
 ```
 Notes:
 - `run_multi_cwah.sh` expects `--variant` or `--runs` arguments (repeatable).
-- `run_multi_cook.sh` requires at least one `--data-root` pointing to a ProAgent run.
+- `run_multi_cook.sh` requires at least one `--data-root` pointing to a Cook-MultiPlayer run.
 
 1) Build windows (no LLM calls):
 ```bash
@@ -187,6 +191,3 @@ python llmjudge.py compare-model-summaries \
 
 ## Optional tools (paper/sweep utilities)
 Helper modules and optional scripts live under `tools/` and are auto-loaded by the main CLIs.
-
-## ProAgent evaluation
-ProAgent `actions.json` evaluation is handled by `proagent.py` (outputs under `proagent/`).
