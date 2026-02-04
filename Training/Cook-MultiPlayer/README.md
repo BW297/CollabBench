@@ -16,7 +16,7 @@ Install in two stages: first the verl-agent base and dependencies, then the Cook
 
 Follow the installation and configuration in the CWAH-MultiPlayer Training README (same verl-agent codebase and environment setup):
 
-- **[VeRL](Train/README.md)**
+- **[VeRL](Training/README.md)**
 
 Complete the “Install veRL” section and any environment-specific steps you need before proceeding.
 
@@ -30,10 +30,10 @@ Ensure you can run the example script under “Usage” (e.g. `cd src && bash ex
 
 ## Running the Training Script
 
-1. Go into `Train`:
+1. Go into `Training`:
 
 ```bash
-cd Train
+cd Training
 ```
 
 2. Start GiGPO training with the ProAgent script:

@@ -16,7 +16,7 @@ Install in two stages: first the verl-agent base and dependencies, then the CWAH
 
 Follow the installation and configuration in the Training README (verl-agent codebase and environment setup):
 
-- **[VeRL](Train/README.md)**
+- **[VeRL](Training/README.md)**
 
 Complete the “Install veRL” section and any environment-specific steps you need before proceeding.
 
@@ -46,10 +46,10 @@ Ensure the CWAH backend (API server used by environment workers) is available at
 
 ## Running the Training Script
 
-1. Go into `Train`:
+1. Go into `Training`:
 
 ```bash
-cd Train
+cd Training
 ```
 
 2. Start GiGPO training with the CWAH script:

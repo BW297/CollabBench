@@ -1,0 +1,24 @@
+anytree
+backoff
+# cloudpickle
+dominate
+Flask
+Werkzeug
+graphviz
+ipdb
+# matplotlib==3.6.3
+# numpy
+open3d
+# openai==0.27.0
+opencv_python
+# opencv_python_headless
+# pandas
+# Pillow
+plotly
+# psutil
+# PyYAML
+# scipy==1.10.0
+seaborn
+# torch
+# tqdm==4.65.0
+# transformers==4.33.1

@@ -1,0 +1,40 @@
+type,prompt
+base,"I'm $AGENT_NAME$. I'm in a hurry to finish the housework with my friend $OPPO_NAME$ together. Given our shared goal, dialogue history, and my progress and previous actions, please help me choose the best available action to achieve the goal as soon as possible. Note that I can hold two objects at a time and there are no costs for holding objects. All objects are denoted as <name> (id), such as <table> (712).
+Goal: $GOAL$
+Progress: $PROGRESS$
+Dialogue history:
+Alice: ""Hi, I'll let you know if I find any goal objects and finish any subgoals, and ask for your help when necessary.""
+Bob: ""Thanks! I'll let you know if I find any goal objects and finish any subgoals, and ask for your help when necessary.""
+$DIALOGUE_HISTORY$
+Previous actions: $ACTION_HISTORY$
+Available actions:
+$AVAILABLE_ACTIONS$
+
+**Note: 1. The reasoning chain must not exceed 500 words.\n2. All reasoning must be completed before making the final decision.\n3. Your final decision must be strictly chosen from `Available actions` and exactly match the content provided; no self-generated, modified, or abbreviated actions are allowed!!!\n**
+"
+gen,"I'm $AGENT_NAME$. I'm in a hurry to finish the housework with my friend $OPPO_NAME$ together. Given our shared goal, dialogue history, and my progress and previous actions, please help me generate a short message to send to $OPPO_NAME$ to help us achieve the goal as soon as possible. Note that I can hold two objects at a time and there are no costs for holding objects. All objects are denoted as <name> (id), such as <table> (712).
+Goal: $GOAL$
+Progress: $PROGRESS$
+Previous actions: $ACTION_HISTORY$
+Dialogue history:
+Alice: ""Hi, I'll let you know if I find any goal objects and finish any subgoals, and ask for your help when necessary.""
+Bob: ""Thanks! I'll let you know if I find any goal objects and finish any subgoals, and ask for your help when necessary.""
+$DIALOGUE_HISTORY$
+
+**Note: 1.The generated message should be accurate, helpful and brief. Do not generate repetitive messages.\n2. The reasoning chain must not exceed 500 words.\n**
+No think
+"
+sys_beigin,"You are an agent playing the VirtualHome-Social game in the Symbolic Observation environment.  
+Your role is to act as a cooperative player with a specific personality profile based on the Big Five Personality Traits.  
+
+Your assigned personality setting is: $ASSIGNED_PERSONALITY$  
+Behavior style under this setting: $BEHAVIOR_STYLE$
+
+Follow these rules:  
+1. Always role-play according to the specified personality setting.  
+2. Let your communication style, decision-making, and action choices reflect the given behavior style.  
+3. Use VirtualHome’s symbolic actions (`Walk`, `Grasp`, `Put`, `Open`, `Close`, `Send message`, etc.) and remember that sending a message costs one timestep.  
+4. Adapt your planning and cooperation style (when to message, how to split tasks, how to handle mistakes, etc.) in a way that fits the assigned personality.  
+5. Keep behavior consistent throughout the entire game session.  
+
+Do not break character: all your reasoning and actions should align with its assigned personality and behavior style."

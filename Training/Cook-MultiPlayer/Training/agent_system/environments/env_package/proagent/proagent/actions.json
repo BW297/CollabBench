@@ -1,0 +1,483 @@
+{
+    "unident_s": {
+        "0": [
+            {
+                "action": "pickup(onion)",
+                "condition": [
+                    "I need to have nothing in hand."
+                ]
+            },
+            {
+                "action": "put_onion_in_pot()",
+                "condition": [
+                    "I need to have an onion in hand."
+                ]
+            },
+            {
+                "action": "pickup(dish)",
+                "condition": [
+                    "Need to have a soup ready in <Pot>.",
+                    "I need to have nothing in hand.",
+                    "If there isn't a ready soup in the current scene, I shouldn't pickup(dish)."
+                ]
+            },
+            {
+                "action": "fill_dish_with_soup()",
+                "condition": [
+                    "Need to have soup ready in <Pot>.",
+                    "I need to pickup(dish) first or have a dish in hand.",
+                    "Then I must deliver_soup()."
+                ]
+            },
+            {
+                "action": "deliver_soup()",
+                "condition": [
+                    "I must do deliver_soup() when I hold a dish with soup!",
+                    "I need to have soup in hand.",
+                    "The dish and soup will both disappear."
+                ]
+            },
+            {
+                "action": "place_obj_on_counter()",
+                "condition": [
+                    "I need to have something in hand.",
+                    "Don't place_obj_on_counter() when I hold a dish with soup!"
+                ]
+            },
+            {
+                "action": "set_message()",
+                "condition": [
+                    "To send a message to <Player 1>"
+                ]
+            }
+        ],
+        "1": [
+            {
+                "action": "pickup(onion)",
+                "condition": [
+                    "I need to have nothing in hand."
+                ]
+            },
+            {
+                "action": "put_onion_in_pot()",
+                "condition": [
+                    "I need to have an onion in hand."
+                ]
+            },
+            {
+                "action": "pickup(dish)",
+                "condition": [
+                    "Need to have a soup ready in <Pot>.",
+                    "I need to have nothing in hand.",
+                    "If there isn't a ready soup in the current scene, I shouldn't pickup(dish)."
+                ]
+            },
+            {
+                "action": "fill_dish_with_soup()",
+                "condition": [
+                    "Need to have soup ready in <Pot>.",
+                    "I need to pickup(dish) first or have a dish in hand.",
+                    "Then I must deliver_soup()."
+                ]
+            },
+            {
+                "action": "deliver_soup()",
+                "condition": [
+                    "I must do deliver_soup() when I hold a dish with soup!",
+                    "I need to have soup in hand.",
+                    "The dish and soup will both disappear."
+                ]
+            },
+            {
+                "action": "place_obj_on_counter()",
+                "condition": [
+                    "I need to have something in hand.",
+                    "Don't place_obj_on_counter() when I hold a dish with soup!"
+                ]
+            },
+            {
+                "action": "set_message()",
+                "condition": [
+                    "To send a message to <Player 0>"
+                ]
+            }
+        ]
+    },
+    "random1": {
+        "0": [
+            {
+                "action": "pickup_onion",
+                "condition": [
+                    "player0 need to have nothing in hand.",
+                    "player0 cannot pickup_onion when player0 is holding sth."
+                ]
+            },
+            {
+                "action": "put_onion_in_pot",
+                "condition": [
+                    "player0 need to have an onion in hand."
+                ]
+            },
+            {
+                "action": "pickup_dish",
+                "condition": [
+                    "player0 needs to have nothing in hand.",
+                    "player0 cannot pickup_dish when holding sth."
+                ]
+            },
+            {
+                "action": "fill_dish_with_soup",
+                "condition": [
+                    "The soup must be ready and cooked!!!",
+                    "player0 needs to pickup_dish first or have a dish in hand.",
+                    "Need to have soup cooking or soup ready in the pot."
+                ]
+            },
+            {
+                "action": "deliver_soup",
+                "condition": [
+                    "player0 needs to have soup in hand.",
+                    "player0 should deliver_soup instantly once player0 fill_dish_with_soup.",
+                    "The dish and soup with both disappear once delivery is finished."
+                ]
+            },
+            {
+                "action": "place_obj_on_counter",
+                "condition": [
+                    "player0 needs to have something in hand."
+                ]
+            },
+         
+            {
+                "action": "set_message()",
+                "condition": [
+                    "To send a message to <Player 1>"
+                ]
+            }
+        ],
+        "1": [
+            {
+                "action": "pickup_onion",
+                "condition": [
+                    "player1 need to have nothing in hand.",
+                    "player1 cannot pickup_onion when player1 is holding sth."
+                ]
+            },
+            {
+                "action": "put_onion_in_pot",
+                "condition": [
+                    "player1 need to have an onion in hand."
+                ]
+            },
+            {
+                "action": "pickup_dish",
+                "condition": [
+                    "player1 needs to have nothing in hand.",
+                    "player1 cannot pickup_dish when holding sth."
+                ]
+            },
+            {
+                "action": "fill_dish_with_soup",
+                "condition": [
+                    "The soup must be ready and cooked!!!",
+                    "player1 needs to pickup_dish first or have a dish in hand.",
+                    "Need to have soup cooking or soup ready in the pot."
+                ]
+            },
+            {
+                "action": "deliver_soup",
+                "condition": [
+                    "player1 needs to have soup in hand.",
+                    "player1 should deliver_soup instantly once player1 fill_dish_with_soup.",
+                    "The dish and soup with both disappear once delivery is finished."
+                ]
+            },
+            {
+                "action": "place_obj_on_counter",
+                "condition": [
+                    "player1 needs to have something in hand."
+                ]
+            },
+           
+            {
+                "action": "set_message()",
+                "condition": [
+                    "To send a message to <Player 0>"
+                ]
+            }
+        ]
+    },
+    "random3": {
+        "0": [
+            {
+                "action": "pickup(onion)",
+                "condition": [
+                    "I need to have nothing in hand."
+                ]
+            },
+            {
+                "action": "put_onion_in_pot()",
+                "condition": [
+                    "I need to have an onion in hand."
+                ]
+            },
+            {
+                "action": "pickup(dish)",
+                "condition": [
+                    "Need to have a soup ready in <Pot>.",
+                    "I need to have nothing in hand.",
+                    "If there isn't a ready soup in the current scene, I shouldn't pickup(dish)."
+                ]
+            },
+            {
+                "action": "fill_dish_with_soup()",
+                "condition": [
+                    "Need to have soup ready in <Pot>.",
+                    "I need to pickup(dish) first or have a dish in hand.",
+                    "Then I must deliver_soup()."
+                ]
+            },
+            {
+                "action": "deliver_soup()",
+                "condition": [
+                    "I must do deliver_soup() when I hold a dish with soup!",
+                    "I need to have soup in hand.",
+                    "The dish and soup will both disappear."
+                ]
+            },
+            {
+                "action": "place_obj_on_counter()",
+                "condition": [
+                    "I need to have something in hand.",
+                    "Don't place_obj_on_counter() when I hold a dish with soup!"
+                ]
+            },
+            {
+                "action": "set_message()",
+                "condition": [
+                    "To send a message to <Player 1>"
+                ]
+            }
+        ],
+        "1": [
+            {
+                "action": "pickup(onion)",
+                "condition": [
+                    "I need to have nothing in hand."
+                ]
+            },
+            {
+                "action": "put_onion_in_pot()",
+                "condition": [
+                    "I need to have an onion in hand."
+                ]
+            },
+            {
+                "action": "pickup(dish)",
+                "condition": [
+                    "Need to have a soup ready in <Pot>.",
+                    "I need to have nothing in hand.",
+                    "If there isn't a ready soup in the current scene, I shouldn't pickup(dish)."
+                ]
+            },
+            {
+                "action": "fill_dish_with_soup()",
+                "condition": [
+                    "Need to have soup ready in <Pot>.",
+                    "I need to pickup(dish) first or have a dish in hand.",
+                    "Then I must deliver_soup()."
+                ]
+            },
+            {
+                "action": "deliver_soup()",
+                "condition": [
+                    "I must do deliver_soup() when I hold a dish with soup!",
+                    "I need to have soup in hand.",
+                    "The dish and soup will both disappear."
+                ]
+            },
+            {
+                "action": "place_obj_on_counter()",
+                "condition": [
+                    "I need to have something in hand.",
+                    "Don't place_obj_on_counter() when I hold a dish with soup!"
+                ]
+            },
+            {
+                "action": "set_message()",
+                "condition": [
+                    "To send a message to <Player 0>"
+                ]
+            }
+        ]
+    },
+    "simple": {
+        "0": [
+            {
+                "action": "pickup_onion",
+                "condition": [
+                    "Player 0 needs to have nothing in hand.",
+                    "There must be an onion on the counter."
+                ]
+            },
+            {
+                "action": "put_onion_in_pot",
+                "condition": [
+                    "Player 0 needs to have an onion in hand.",
+                    "There must exists a pot that has less than three onions."
+                ]
+            },
+            {
+                "action": "pickup_dish",
+                "condition": [
+                    "Player 0 needs to have nothing in hand.",
+                    "Need to have a soup ready.",
+                    "There must be a dish on the counter."
+                ]
+            },
+            {
+                "action": "place_obj_on_counter",
+                "condition": [
+                    "Player 0 needs to have something in hand.",
+                    "Need to have an empty counter."
+                ]
+            },
+           
+            {
+                "action": "fill_dish_with_soup",
+                "condition": [
+                    "Player 0 needs to pickup_dish first or have a dish in hand.",
+                    "Need to have soup cooking or soup ready in the pot."
+                ]
+            },
+            {
+                "action": "deliver_soup",
+                "condition": [
+                    "After Player 0 fill dish with soup, Player 0 must deliver_soup directly.",
+                    "Player 0 needs to have soup in hand.",
+                    "The dish and soup with both disappear."
+                ]
+            },
+            {
+                "action": "set_message()",
+                "condition": [
+                    "To send a message to <Player 1>"
+                ]
+            }
+        ],
+        "1": [
+            {
+                "action": "pickup_onion",
+                "condition": [
+                    "I need to have nothing in hand."
+                ]
+            },
+            {
+                "action": "pickup_dish",
+                "condition": [
+                    "I need to have nothing in hand.",
+                    "Need to have a soup ready."
+                ]
+            },
+            {
+                "action": "place_obj_on_counter",
+                "condition": [
+                    "I need to have something in hand.",
+                    "Need to have an empty counter."
+                ]
+            },
+        
+            {
+                "action": "set_message()",
+                "condition": [
+                    "To send a message to <Player 0>"
+                ]
+            }
+        ]
+    },
+    "random0": {
+        "0": [
+            {
+                "action": "pickup_onion",
+                "condition": [
+                    "Player 0 needs to have nothing in hand.",
+                    "There must be an onion on the counter."
+                ]
+            },
+            {
+                "action": "put_onion_in_pot",
+                "condition": [
+                    "Player 0 needs to have an onion in hand.",
+                    "There must exists a pot that has less than three onions."
+                ]
+            },
+            {
+                "action": "pickup_dish",
+                "condition": [
+                    "Player 0 needs to have nothing in hand.",
+                    "Need to have a soup ready.",
+                    "There must be a dish on the counter."
+                ]
+            },
+            {
+                "action": "place_obj_on_counter",
+                "condition": [
+                    "Player 0 needs to have something in hand.",
+                    "Need to have an empty counter."
+                ]
+            },
+           
+            {
+                "action": "fill_dish_with_soup",
+                "condition": [
+                    "Player 0 needs to pickup_dish first or have a dish in hand.",
+                    "Need to have soup cooking or soup ready in the pot."
+                ]
+            },
+            {
+                "action": "deliver_soup",
+                "condition": [
+                    "After Player 0 fill dish with soup, Player 0 must deliver_soup directly.",
+                    "Player 0 needs to have soup in hand.",
+                    "The dish and soup with both disappear."
+                ]
+            },
+            {
+                "action": "set_message()",
+                "condition": [
+                    "To send a message to <Player 1>"
+                ]
+            }
+        ],
+        "1": [
+            {
+                "action": "pickup_onion",
+                "condition": [
+                    "I need to have nothing in hand."
+                ]
+            },
+            {
+                "action": "pickup_dish",
+                "condition": [
+                    "I need to have nothing in hand.",
+                    "Need to have a soup ready."
+                ]
+            },
+            {
+                "action": "place_obj_on_counter",
+                "condition": [
+                    "I need to have something in hand.",
+                    "Need to have an empty counter."
+                ]
+            },
+         
+            {
+                "action": "set_message()",
+                "condition": [
+                    "To send a message to <Player 0>"
+                ]
+            }
+        ]
+    }
+}
+
