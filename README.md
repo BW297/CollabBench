@@ -78,6 +78,10 @@ cd Cook-MultiPlayer
 
 This section describes the **affective evaluation protocols** used in CollabBench.
 
+```bash
+cd Evaluation
+```
+
 📄 **Details:** [Evaluation](Evaluation/README.md)
 
 ---
