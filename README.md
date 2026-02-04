@@ -16,7 +16,7 @@ cd Anthropomorphic
 
 This section focuses on modeling **diverse player profiles** from trajectory data.
 
-📄 **Details:** `Anthropomorphic/README.md`
+📄 **Details:** [Anthropomorphic](Anthropomorphic/README.md)
 
 ---
 
@@ -34,7 +34,7 @@ cd Training
 cd CWAH-MultiPlayer
 ```
 
-📄 **Details:** `CWAH-MultiPlayer/README.md`
+📄 **Details:** [CWAH-MultiPlayer](Training/CWAH-MultiPlayer/README.md)
 
 
 ### 🎮 Cook-MultiPlayer
@@ -43,7 +43,7 @@ cd CWAH-MultiPlayer
 cd Cook-MultiPlayer
 ```
 
-📄 **Details:** `Cook-MultiPlayer/README.md`
+📄 **Details:** [Cook-MultiPlayer](Training/Cook-MultiPlayer/README.md)
 
 ---
 
@@ -61,7 +61,7 @@ cd Running
 cd CWAH-MultiPlayer
 ```
 
-📄 **Details:** `CWAH-MultiPlayer/README.md`
+📄 **Details:** [CWAH-MultiPlayer](Running/CWAH-MultiPlayer/README.md)
 
 
 ### 🎮 Cook-MultiPlayer
@@ -70,7 +70,7 @@ cd CWAH-MultiPlayer
 cd Cook-MultiPlayer
 ```
 
-📄 **Details:** `Cook-MultiPlayer/README.md`
+📄 **Details:** [Cook-MultiPlayer](Running/Cook-MultiPlayer/README.md)
 
 ---
 
@@ -78,7 +78,7 @@ cd Cook-MultiPlayer
 
 This section describes the **affective evaluation protocols** used in CollabBench.
 
-📄 **Details:** `Evaluation/README.md`
+📄 **Details:** [Evaluation](Evaluation/README.md)
 
 ---
 

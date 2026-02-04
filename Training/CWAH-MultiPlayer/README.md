@@ -16,7 +16,7 @@ Install in two stages: first the verl-agent base and dependencies, then the CWAH
 
 Follow the installation and configuration in the Training README (verl-agent codebase and environment setup):
 
-- **[Training README](Training/README.md)**
+- **[VeRL](Training/README.md)**
 
 Complete the “Install veRL” section and any environment-specific steps you need before proceeding.
 
@@ -24,7 +24,7 @@ Complete the “Install veRL” section and any environment-specific steps you n
 
 Then install and configure the CWAH-MultiPlayer running environment (VirtualHome API and simulator):
 
-- **[CWAH-MultiPlayer (Running) README](../../Running/CWAH-MultiPlayer/README.md)** 
+- **[CWAH-MultiPlayer](../../Running/CWAH-MultiPlayer/README.md)** 
 
 Go into `Training/agent_system/environments/env_package/cwah`:
 
