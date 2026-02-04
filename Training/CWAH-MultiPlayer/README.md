@@ -16,7 +16,7 @@ Install in two stages: first the verl-agent base and dependencies, then the CWAH
 
 Follow the installation and configuration in the Training README (verl-agent codebase and environment setup):
 
-- **[VeRL](Training/README.md)**
+- **[VeRL](Train/README.md)**
 
 Complete the “Install veRL” section and any environment-specific steps you need before proceeding.
 
@@ -26,16 +26,16 @@ Then install and configure the CWAH-MultiPlayer running environment (VirtualHome
 
 - **[CWAH-MultiPlayer (Running) README](../../Evaluation/Running/CWAH-MultiPlayer/README.md)** — VirtualHome clone, executable download, conda env, and dependencies.
 
-First go into `Training/agent_system/environments/env_package/cwah`, then install and configure according to the CWAH-MultiPlayer (Running) README.
+First go into `Train/agent_system/environments/env_package/cwah`, then install and configure according to the CWAH-MultiPlayer (Running) README.
 
 ```bash
-cd Training/agent_system/environments/env_package/cwah
+cd Train/agent_system/environments/env_package/cwah
 # Then install and configure according to the CWAH-MultiPlayer (Running) README
 ```
 Ensure the final directory layout includes the game engine files and executables:
 
 ```bash
-├── Training/agent_system/environments/env_package/cwah/
+├── Train/agent_system/environments/env_package/cwah/
 │   ├── cwah/                 
 │   ├── executable/ 
 │   ├── virtualhome/                
@@ -46,10 +46,10 @@ Ensure the CWAH backend (API server used by environment workers) is available at
 
 ## Running the Training Script
 
-1. Go into `Training`:
+1. Go into `Train`:
 
 ```bash
-cd Training
+cd Train
 ```
 
 2. Start GiGPO training with the CWAH script:
