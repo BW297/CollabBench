@@ -1,0 +1,16 @@
+In the **Overcooked_AI** cooperative cooking game, players collaborate to maximize the score by producing onion soup efficiently. You are given several behavior trajectories of the player. Identify the high-level behavior pattern common across these trajectories. In this game, players can execute symbolic actions such as `pickup(onion)`, `pickup(dish)`, `place_obj_on_counter()`, `put_onion_in_pot()`, `fill_dish_with_soup()`, `deliver_soup()`, `wait(x)`, and `set_message()` (sending a message costs 1 timestep). Players typically follow a stepwise process: pickup(3 onions) $\rightarrow$ put_onion_in_pot() $\rightarrow$ wait 20 timesteps for cooking) $\rightarrow$ fill_dish_with_soup() $\rightarrow$ deliver_soup() (+20 points), ensuring never to deliver an empty dish.
+
+Based on the trajectory segments (three time windows)
+
+$trajectory_steps
+
+summarise the common behavioral style and personality traits into **one concise sentence**. 
+
+If you truly believe that there is no common feature across the trajectories, output:
+```
+Profile: Fail
+```
+Output format should be:
+```
+Profile: (your summarized behavior pattern **in English**, e.g., "The player frequently communicates with their teammate, efficiently plans actions, and coordinates item handling to achieve shared goals. This behavior reflects a cooperative and organized personality.")
+```

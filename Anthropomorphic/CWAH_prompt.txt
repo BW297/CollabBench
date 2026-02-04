@@ -1,0 +1,17 @@
+In the **VirtualHome** (a cooperative household-simulation game for two players, collaborating to achieve a joint goal), you are given several behavior trajectories of the player. Identify the high-level behavior pattern common across these trajectories. In this game, players can execute symbolic actions such as `Walk`, `Open`, `Close`, and `Send message` (a messaging action costs 1 time step). Each player may hold up to two items (items denoted as `<Name> (ID)` e.g. `<Table> (712)`), and players typically communicate to synchronize progress (e.g. discovering target items, announcing completion of subgoals) or request assistance, to speed up goal completion.
+
+Based on the trajectory segments (three time windows)
+
+$trajectory_steps
+
+summarise the common behavioral style and personality traits into one concise sentence.
+
+If you truly believe that there is no common feature across the trajectories, output:
+```
+Profile: Fail
+```
+
+Output format should be:
+```
+Profile: (your summarized behavior pattern **in English**, e.g., "The player hesitates often, moves slowly, and frequently repeats simple actions. This behavior reflects a cautious and meticulous personality.") 
+```

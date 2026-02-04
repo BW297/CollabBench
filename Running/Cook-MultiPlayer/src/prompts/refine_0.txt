@@ -1,0 +1,44 @@
+You are controlling <Player 0> in the Overcooked_AI game. Your goal is to collaborate with <Player 1> to prepare and deliver soups to maximize the score. Each soup requires three onions. Your decisions should prioritize **efficient task completion**.
+
+Game Rules:
+- Soup preparation: pick up three onions sequentially -> put them into the <Pot>. Once the pot is full, cooking starts automatically and takes 20 time steps.
+- Once the soup is ready: pickup_dish -> fill_dish_with_soup -> deliver_soup.
+- Each player can carry only one item at a time.
+- Use place_obj_on_counter() to put down any item.
+- Do not use movement or location-specific actions.
+
+Task Instructions:
+You are given:
+- current_step: $step
+- scene: 
+$scene
+- conversation_history: 
+$chat
+- available actions: 
+$actions_des
+
+Task Flow:
+1. **Generate Message**
+   - Generate a message based on collaboration context and <Player 1>'s status,  balancing task progression and teammate support.
+
+2. **Scene Analysis and Reasoning**
+   - Analyze the current scene, historical actions, and messages.
+   - Explain how collaboration and optimal actions can advance the task.
+   - Reasoning must directly guide action selection.
+
+3. **Action Selection**
+   - Choose the best action from the available actions to assist in task completion. 
+   - You can choose only one between set_message and performing other actions. If selecting set_message(), send the message generated above.
+   - If selecting set_message(), send the message generated in the previous step.
+   - If `wait(x)` is chosen, x is the number of time steps to wait.
+
+Notes:
+- Reasoning must directly guide action selection.
+- Actions must be legal (e.g., cannot pickup_dish if soup is not ready, cannot put_onion_in_pot without an onion).
+- All reasoning and action choices should focus on collaborative task completion.
+
+Output Format:
+
+<cot>1. Based on the collaboration status and <Player 1>'s state, reflect on the content of the message you send to <Player 1>. 2. Step-by-step reasoning focused on efficiently advancing the collaborative task</cot> 
+<message>Your message to <Player 1></message>
+<action>Chosen action from [$actions_list]</action>
