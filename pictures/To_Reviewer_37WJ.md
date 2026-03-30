@@ -70,7 +70,7 @@ Diversity evaluation based on trajectory encoding by BGE-M3 in CWAH.
 
 | CWAH                               | BGE-M3 | Qwen3-Embedding-4B |
 | ---------------------------------- | ------ | ------------------ |
-| $ \text{Cluster}_\xi \ (\uparrow)$ | 11.4   | 17.6               |
+| $ \text{Cluster}_\xi $($\uparrow$) | 11.4   | 17.6               |
 | Spread ($\uparrow$)                | 0.62   | 0.74               |
 
 > L1
