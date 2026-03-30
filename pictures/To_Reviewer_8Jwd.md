@@ -42,6 +42,6 @@ Diversity evaluation in CWAH (Task 0: *read_book*), comparing CollabBench with m
 
 | CWAH | Multi LLM | CollabBench |
 | --- | --- | --- |
-| $Cluster_ \xi $    ($\uparrow$) | 32 | **36** |
+| Cluster    ($\uparrow$) | 32 | **36** |
 | Spread($\uparrow$) | 0.78 | **0.97** |
 

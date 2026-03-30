@@ -47,12 +47,12 @@ Evaluation results of small-scale open-source models on CollabBench in CWAH, ass
 Evaluation results on long-horizon collaborative writing and programming tasks in CollabBench (30 conversations evaluated).
 
 
-| Tasks              | Metrics                               | Base     | CollabBench |
-| :----------------- | ------------------------------------- | -------- | ----------- |
-| MediumDocEdit-Chat | Document->Bleu（$ \uparrow $）        | **0.52** | 0.49        |
-|                    | Interactivity（$ \uparrow $）         | 0.78     | **0.89**    |
-|                    | Token Amount ($k$) （$ \downarrow $） | 2.75     | **2.56**    |
-| MATH-Chat          | ACC（$ \uparrow $）                   | **0.93** | 0.91        |
-|                    | Interactivity（$ \uparrow $）         | 0.61     | **0.68**    |
-|                    | Token Amount ($k$) （$ \downarrow $） | 1.58     | **1.51**    |
+| Tasks              | Metrics                             | Base     | CollabBench |
+| :----------------- | ----------------------------------- | -------- | ----------- |
+| MediumDocEdit-Chat | Document->Bleu（$\uparrow$）        | **0.52** | 0.49        |
+|                    | Interactivity（$\uparrow$）         | 0.78     | **0.89**    |
+|                    | Token Amount ($k$) （$\downarrow$） | 2.75     | **2.56**    |
+| MATH-Chat          | ACC（$\uparrow$）                   | **0.93** | 0.91        |
+|                    | Interactivity（$\uparrow$）         | 0.61     | **0.68**    |
+|                    | Token Amount ($k$) （$\downarrow$） | 1.58     | **1.51**    |
 
