@@ -70,8 +70,8 @@ Diversity evaluation based on trajectory encoding by BGE-M3 in CWAH.
 
 | CWAH                               | BGE-M3 | Qwen3-Embedding-4B |
 | ---------------------------------- | ------ | ------------------ |
-| $ \text{Cluster}_\xi $($\uparrow$) | 11.4   | 17.6               |
-| Spread ($\uparrow$)                | 0.62   | 0.74               |
+| Cluster (↑) | 11.4   | 17.6               |
+| Spread (↑)                | 0.62   | 0.74               |
 
 > L1
 
@@ -80,10 +80,10 @@ Evaluation results on long-horizon collaborative writing and programming tasks i
 
 | Tasks | Metrics | Base | CollabBench |
 | :-- | --- | --- | --- |
-|  MediumDocEdit-Chat   | Document->Bleu（$\uparrow$） | **0.52** | 0.49 |
-|   | Interactivity（$\uparrow$） | 0.78 | **0.89** |
-|  | Token Amount ($k$) （$\downarrow$） | 2.75 | **2.56** |
-|  MATH-Chat | ACC（$\uparrow$） | **0.93** | 0.91 |
-|  | Interactivity（$\uparrow$） | 0.61 | **0.68** |
-|  | Token Amount ($k$) （$\downarrow$） | 1.58 | **1.51** |
+|  MediumDocEdit-Chat   | Document->Bleu（↑） | **0.52** | 0.49 |
+|   | Interactivity（↑） | 0.78 | **0.89** |
+|  | Token Amount ($k$) （↓） | 2.75 | **2.56** |
+|  MATH-Chat | ACC（↑） | **0.93** | 0.91 |
+|  | Interactivity（↑） | 0.61 | **0.68** |
+|  | Token Amount ($k$) （↓） | 1.58 | **1.51** |
 
