@@ -75,7 +75,7 @@ Diversity evaluation based on trajectory encoding by BGE-M3 in CWAH.
 
 > L1
 
-Evaluation results on long-horizon collaborative writing and math tasks in CollabBench (30 conversations evaluated, Qwen2.5-7B-Instruct).
+Evaluation results on long-horizon collaborative writing and math tasks in CollabBench (30 conversations evaluated, Qwen2.5-7B-Instruct), derived from CollabLLM[2].
 
 
 | Tasks | Metrics | Base | CollabBench |
