@@ -44,7 +44,7 @@ Evaluation results of small-scale open-source models on CollabBench in CWAH, ass
 
 + Generalization in more realistic application beyond online games: 
 
-Evaluation results on long-horizon collaborative writing and programming tasks in CollabBench (30 conversations evaluated).
+Evaluation results on long-horizon collaborative writing and math tasks in CollabBench (30 conversations evaluated, Qwen2.5-7B-Instruct).
 
 
 | Tasks              | Metrics                             | Base     | CollabBench |
