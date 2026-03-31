@@ -1,5 +1,5 @@
 >W1
-
+Changes in consistency with varying filtering ratios in CWAH
 ![W1](To_Reviewer_37WJ_W1.png)
 
 >W4
