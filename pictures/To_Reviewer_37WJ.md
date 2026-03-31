@@ -1,3 +1,7 @@
+>W1
+
+![W1](D:\360MoveData\Users\bless\Desktop\collabbench\CollabBench\pictures\To_Reviewer_37WJ_W1.png)
+
 >W4
 
 SFT results of CollabBench in CWAH in both CB-Efficiency and CB-Affective ($P_{target}$ serves as Agent 1).
