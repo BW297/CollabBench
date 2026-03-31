@@ -1,6 +1,6 @@
 >W1
 
-![W1](D:\360MoveData\Users\bless\Desktop\collabbench\CollabBench\pictures\To_Reviewer_37WJ_W1.png)
+![W1](To_Reviewer_37WJ_W1.png)
 
 >W4
 
