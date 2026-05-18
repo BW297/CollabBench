@@ -1,4 +1,41 @@
-# 🚀 CollabBench
+<div align="center">
+
+<h1>CollabBench: Benchmarking and Unleashing Collaborative Ability of LLMs with Diverse Players via Proactive Engagement</h1>
+
+<p><strong>ICML 2026</strong></p>
+
+<p>
+  Hong Qian,
+  Yuanhao Liu,
+  Zihan Zhou,
+  Zongbao Zhang,
+  Hanjie Ge,
+  Haotian Shi,
+  Liang Dou,
+  Xiangfeng Wang,
+  Jingwen Yang*,
+  and Aimin Zhou
+</p>
+
+<p>
+  East China Normal University<br>
+  Tencent Inc.<br>
+  Shanghai Innovation Institute
+</p>
+
+<p>
+  <a href="paper/CollabBench.pdf"><img src="https://img.shields.io/badge/Paper-PDF-orange" alt="Paper PDF"></a>
+  <a href="https://github.com/BW297/CollabBench"><img src="https://img.shields.io/badge/Code-GitHub-black" alt="GitHub Repository"></a>
+  <a href="paper/CollabBench.pdf"><img src="https://img.shields.io/badge/Conference-ICML%202026-blue" alt="ICML 2026"></a>
+  <a href="https://github.com/BW297/CollabBench"><img src="https://img.shields.io/badge/Focus-Collaborative%20LLM%20Agents-green" alt="Collaborative LLM Agents"></a>
+</p>
+
+<img src="image/framework.png" width="820" alt="CollabBench framework" />
+
+</div>
+
+------
+## Overview
 
 We propose **CollabBench**, a benchmark for **systematically evaluating and training LLM-based agents to proactively collaborate with diverse players**.
 
@@ -6,7 +43,15 @@ CollabBench focuses on collaborative agent research, aiming to facilitate resear
 
 This repository is organized into the following **four sections**.
 
----
+## Table of Contents
+
+- [Diverse Player Profiles Simulation](#1️⃣-diverse-player-profiles-simulation)
+- [Collaborative Agentic Training](#2️⃣-collaborative-agentic-training)
+- [Evaluation](#3️⃣-evaluation)
+- [Player Trajectory Demonstration](#4️⃣-player-trajectory-demonstration)
+- [Citation](#-citation)
+
+
 
 ## 1️⃣ Diverse Player Profiles Simulation
 
@@ -118,3 +163,21 @@ We visualize representative trajectories for **five typical player types** (GIF 
 
 ![gif-13](figure/13/gif-13.gif "Independent Loner")
 
+
+## 💭 Citation
+
+If you find this repository useful in your research, please cite:
+
+```bibtex
+@inproceedings{CollabBench2026,
+  author = {Hong Qian and Yuanhao Liu and Zihan Zhou and Zongbao Zhang and Hanjie Ge and Haotian Shi and Liang Dou and Xiangfeng Wang and Jingwen Yang and Aimin Zhou},
+  title = {CollabBench: Benchmarking and Unleashing the Collaborative Ability of LLMs with Diverse Players via Proactive Engagement},
+  booktitle = {Proceedings of the 43rd International Conference on Machine Learning},
+  year = {2026},
+  address = {Seoul, South Korea}
+}
+```
+
+Reference:
+
+> Hong Qian, Yuanhao Liu, Zihan Zhou, Zongbao Zhang, Hanjie Ge, Haotian Shi, Liang Dou, Xiangfeng Wang, Jingwen Yang, and Aimin Zhou. CollabBench: Benchmarking and Unleashing the Collaborative Ability of LLMs with Diverse Players via Proactive Engagement. In Proceedings of the 43rd International Conference on Machine Learning, 2026.
