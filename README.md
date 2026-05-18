@@ -37,11 +37,8 @@
 ------
 ## Overview
 
-We propose **CollabBench**, a benchmark for **systematically evaluating and training LLM-based agents to proactively collaborate with diverse players**.
+We propose **CollabBench**, a benchmark for **systematically evaluating and training LLM-based agents to proactively collaborate with diverse players**. CollabBench focuses on collaborative agent research, aiming to facilitate research on LLM-based agents in **efficient and affective interactions**.
 
-CollabBench focuses on collaborative agent research, aiming to facilitate research on LLM-based agents in **efficient and affective interactions**.
-
-This repository is organized into the following **four sections**.
 
 ## Table of Contents
 
@@ -100,7 +97,7 @@ This section describes the **trajectory data collection and affective LLM judge*
 cd Evaluation
 ````
 
-### trajectory data collection
+### Trajectory Data Collection
 
 ```bash
 cd Running
@@ -123,7 +120,6 @@ cd Cook-MultiPlayer
 
 📄 **Details:** [Cook-MultiPlayer](Evaluation/Running/Cook-MultiPlayer/README.md)
 
----
 
 ### Affective LLM Judge
 
