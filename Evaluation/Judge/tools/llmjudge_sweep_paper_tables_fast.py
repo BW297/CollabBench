@@ -370,20 +370,20 @@ def main(argv: Optional[List[str]] = None) -> int:
     ap.add_argument(
         "--bases",
         nargs="+",
-        default=["coela_11/CoELA/evaluation", "coela_11/CoELA/evaluation/proagent"],
+        default=["Evaluation/evaluation", "Evaluation/Judge/cook"],
         help="One or more base dirs containing out_* folders.",
     )
     ap.add_argument("--glob", default="out_*", help='Outdir glob under each base (default: "out_*").')
-    ap.add_argument("--tuning-means-csv", default="coela_11/CoELA/evaluation/tuning_means.csv")
-    ap.add_argument("--global-send-message-csv", default="coela_11/CoELA/evaluation/send_message_ratio_all_variants.csv")
-    ap.add_argument("--msg-penalty-threshold", type=float, default=0.2)
+    ap.add_argument("--tuning-means-csv", default="Evaluation/Judge/tools/tuning_means.csv")
+    ap.add_argument("--global-send-message-csv", default="Evaluation/Judge/tools/send_message_ratio_all_variants.csv")
+    ap.add_argument("--msg-penalty-threshold", type=float, default=0.15)
     ap.add_argument("--msg-penalty-k", type=float, default=4.0)
 
     ap.add_argument("--a-list", default="0.5,1.0,1.5,2.0")
     ap.add_argument("--b-list", default="0.5,1.0,1.5,2.0")
     ap.add_argument("--pmax-list", default="0.5,1.0,1.5,2.0")
 
-    ap.add_argument("--out-dir", default="coela_11/CoELA/sweeps/fast_tables")
+    ap.add_argument("--out-dir", default="Evaluation/sweeps/fast_tables")
     ap.add_argument("--max-keep", type=int, default=200, help="Max parameter sets to keep (write tables for).")
 
     ap.add_argument(

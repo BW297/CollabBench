@@ -1100,7 +1100,7 @@ def cmd_aggregate_results(argv: Optional[List[str]] = None) -> int:
     ap.add_argument(
         "--msg-penalty-max",
         type=float,
-        default=1.0,
+        default=2.0,
         help="Max penalty deducted from each dimension score (set 0 to disable).",
     )
     ap.add_argument(
@@ -1596,8 +1596,8 @@ def cmd_compare_model_summaries(argv: Optional[List[str]] = None) -> int:
     )
     ap.add_argument(
         "--base",
-        default="coela_11/CoELA/evaluation",
-        help="Directory to search when --outdirs is not provided (default: coela_11/CoELA/evaluation).",
+        default="Evaluation/evaluation",
+        help="Directory to search when --outdirs is not provided (default: Evaluation/evaluation).",
     )
     ap.add_argument(
         "--glob",
@@ -1694,7 +1694,7 @@ def cmd_run_pipeline(argv: Optional[List[str]] = None) -> int:
     ap.add_argument(
         "--variant",
         default=None,
-        help="Variant directory (e.g. coela_11/CoELA/cwah-0-agent-1-human_deepseekduida). Uses `<variant>/runs`.",
+        help="Variant directory relative to Evaluation/ unless absolute (e.g. cwah-0-agent-1-human_deepseekduida). Uses `<variant>/runs`.",
     )
     ap.add_argument(
         "--outdir",
@@ -1709,8 +1709,8 @@ def cmd_run_pipeline(argv: Optional[List[str]] = None) -> int:
     ap.add_argument("--workers", type=int, default=4)
     ap.add_argument("--max-files", type=int, default=None)
     ap.add_argument("--max-chars", type=int, default=2200)
-    ap.add_argument("--a", type=float, default=1.0)
-    ap.add_argument("--b", type=float, default=1.0)
+    ap.add_argument("--a", type=float, default=0.8)
+    ap.add_argument("--b", type=float, default=0.8)
     ap.add_argument("--a-helpfulness", type=float, default=None)
     ap.add_argument("--b-helpfulness", type=float, default=None)
     ap.add_argument("--a-trustfulness", type=float, default=None)
@@ -1892,11 +1892,11 @@ def _print_main_help() -> None:
         "compare-model-summaries",
         "run-pipeline",
     ]
-    print("Usage: python evaluation/llmjudge.py <command> [args]")
+    print("Usage: python llmjudge.py <command> [args]")
     print("Commands:")
     for c in cmds:
         print(f"  - {c}")
-    print("Run: python evaluation/llmjudge.py <command> --help")
+    print("Run: python llmjudge.py <command> --help")
 
 
 def main(argv: Optional[List[str]] = None) -> int:

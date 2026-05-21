@@ -157,8 +157,8 @@ Now you can submit the training job to the Ray cluster which is available at ``l
     $ RAY_ADDRESS=http://localhost:8265
     $ ray job submit \
         -- python3 -m verl.trainer.main_ppo \
-        data.train_files=/root/data/gsm8k/train.parquet \
-        data.val_files=/root/data/gsm8k/test.parquet \
+        data.train_files=/path/to/gsm8k/train.parquet \
+        data.val_files=/path/to/gsm8k/test.parquet \
         data.train_batch_size=256 \
         data.max_prompt_length=512 \
         data.max_response_length=256 \
@@ -593,4 +593,3 @@ Just sbatch your slurm_script.sh
 .. code-block:: bash
 
     sbatch slurm_script.sh
-

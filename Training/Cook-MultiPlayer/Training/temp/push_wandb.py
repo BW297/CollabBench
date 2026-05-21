@@ -141,31 +141,33 @@ def main():
         epilog="""
 示例:
   # 同步单个 run
-  python push_wandb.py -k YOUR_KEY -d /root/data/code/verl-agent/wandb/run-20251219_094156-4ls2y2s3
-  
+  python push_wandb.py -k YOUR_KEY -d /path/to/verl-agent/wandb/run-YYYYMMDD_HHMMSS
+
   # 同步整个 wandb 目录下的所有 run
-  python push_wandb.py -k YOUR_KEY -d /root/data/code/verl-agent/wandb
-  
+  python push_wandb.py -k YOUR_KEY -d /path/to/verl-agent/wandb
+
   # 同步 latest-run (符号链接)
-  python push_wandb.py -k YOUR_KEY -d /root/data/code/verl-agent/wandb/latest-run
+  python push_wandb.py -k YOUR_KEY -d /path/to/verl-agent/wandb/latest-run
         """
     )
     
     parser.add_argument(
         "-k", "--wandb_key",
         required=False,
-        default="354e1d0ee17771243321187ec0d3ba7bcc1105d0",
-        help="WandB API key"
+        default=os.environ.get("WANDB_API_KEY"),
+        help="WandB API key. Defaults to WANDB_API_KEY."
     )
     
     parser.add_argument(
         "-d", "--wandb_dir",
         required=False,
-        default="/inspire/hdd/project/ai4education/qianhong-p-qianhong/verl-agent-proagent/verl-agent/wandb/offline-run-20251220_053816-wx5lq9ni",
+        default="wandb",
         help="本地 wandb 路径（可以是单个 run 目录、包含多个 run 的文件夹、或包含 runs 子目录的文件夹）"
     )
     
     args = parser.parse_args()
+    if not args.wandb_key:
+        parser.error("WandB API key is required. Pass -k/--wandb_key or set WANDB_API_KEY.")
     
     # 检查 wandb 命令是否可用
     try:
@@ -180,4 +182,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

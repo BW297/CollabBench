@@ -696,14 +696,14 @@ def main(argv: Optional[List[str]] = None) -> int:
     ap.add_argument(
         "--bases",
         nargs="+",
-        default=["coela_11/CoELA/evaluation", "coela_11/CoELA/evaluation/proagent"],
+        default=["Evaluation/evaluation", "Evaluation/Judge/cook"],
         help="Base dirs containing out_* folders.",
     )
     ap.add_argument("--glob", default="out_*")
     ap.add_argument("--sweep-summary", required=True, help="Path to sweep_summary.csv with columns a,b,p_max.")
     ap.add_argument("--out-dir", required=True, help="Output root directory for regenerated tables.")
-    ap.add_argument("--global-send-message-csv", default="coela_11/CoELA/evaluation/send_message_ratio_all_variants.csv")
-    ap.add_argument("--msg-penalty-threshold", type=float, default=0.2)
+    ap.add_argument("--global-send-message-csv", default="Evaluation/Judge/tools/send_message_ratio_all_variants.csv")
+    ap.add_argument("--msg-penalty-threshold", type=float, default=0.15)
     ap.add_argument("--msg-penalty-k", type=float, default=4.0)
     ap.add_argument(
         "--ablation-model-keys",

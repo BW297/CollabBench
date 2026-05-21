@@ -10,7 +10,7 @@ if [[ -z "${LOG_PIK}" ]]; then
   exit 2
 fi
 
-python3 - <<'PY'
+python3 - "${LOG_PIK}" "${AGENT_INDEX}" "${STEP_INDEX}" <<'PY'
 import pickle, sys
 path = sys.argv[1]
 agent_index = int(sys.argv[2])
@@ -25,5 +25,4 @@ print("\n=== raw_output.text ===")
 print(entry.get("raw_output", {}).get("text", ""))
 print("\n=== meta ===")
 print(entry.get("raw_output", {}).get("meta", {}))
-PY "${LOG_PIK}" "${AGENT_INDEX}" "${STEP_INDEX}"
-
+PY

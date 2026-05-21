@@ -145,22 +145,22 @@ def main(argv: Optional[List[str]] = None) -> int:
     ap.add_argument(
         "--bases",
         nargs="+",
-        default=["coela_11/CoELA/evaluation", "coela_11/CoELA/evaluation/proagent"],
+        default=["Evaluation/evaluation", "Evaluation/Judge/cook"],
         help="One or more base dirs containing out_* folders.",
     )
     ap.add_argument("--glob", default="out_*", help='Outdir glob under each base (default: "out_*").')
-    ap.add_argument("--out-csv", default="coela_11/CoELA/evaluation/final_report_all.csv")
-    ap.add_argument("--out-task-csv", default="coela_11/CoELA/evaluation/final_report_all_tasks.csv")
+    ap.add_argument("--out-csv", default="Evaluation/evaluation/final_report_all.csv")
+    ap.add_argument("--out-task-csv", default="Evaluation/evaluation/final_report_all_tasks.csv")
     ap.add_argument("--include-outdir", action="store_true", help="Include absolute outdir path in CSVs.")
 
     ap.add_argument("--a", type=float, required=True)
     ap.add_argument("--b", type=float, required=True)
-    ap.add_argument("--msg-penalty-threshold", type=float, default=0.2)
+    ap.add_argument("--msg-penalty-threshold", type=float, default=0.15)
     ap.add_argument("--msg-penalty-k", type=float, default=4.0)
-    ap.add_argument("--msg-penalty-max", type=float, default=1.0, help="This is your tunable p.")
+    ap.add_argument("--msg-penalty-max", type=float, default=2.0, help="Maximum message-sparsity penalty.")
     ap.add_argument(
         "--global-send-message-csv",
-        default="coela_11/CoELA/evaluation/send_message_ratio_all_variants.csv",
+        default="Evaluation/Judge/tools/send_message_ratio_all_variants.csv",
         help="Uses agent_llm_send_message_ratio_global as the penalty ratio (when variant is matched).",
     )
     args = ap.parse_args(argv)
@@ -316,4 +316,3 @@ def main(argv: Optional[List[str]] = None) -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

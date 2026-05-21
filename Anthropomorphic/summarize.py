@@ -1,25 +1,26 @@
-from openai import OpenAI
+import argparse
 import json
 import os
-import numpy as np
+import random
 from string import Template
 
-cook_prompt_file = "Cook_prompt.txt"
-cwah_prompt_file = "CWAH_prompt.txt"
-with open(cook_prompt_file, "r", encoding="utf-8") as f:
-    PROMPT = f.read()
+from openai import OpenAI
 
-model = "YOUR_MODEL"
-client = OpenAI(base_url="YOUR_DEPLOYMENT_URL", api_key="YOUR_API_KEY")
 
-import random
-
-def try_send_prompt_random(prompt: str, max_attempts=5, step_reduce=5):
+def try_send_prompt_random(
+    prompt: str,
+    prompt_template: str,
+    client: OpenAI,
+    model: str,
+    rng: random.Random,
+    max_attempts=5,
+    step_reduce=5,
+):
     attempt = 0
     lines = prompt.strip().split("\n")
     while attempt <= max_attempts:
         try:
-            template = Template(PROMPT)
+            template = Template(prompt_template)
             full_prompt = template.safe_substitute(trajectory_steps=prompt)
             
             response = client.chat.completions.create(
@@ -38,7 +39,7 @@ def try_send_prompt_random(prompt: str, max_attempts=5, step_reduce=5):
            
             if len(lines) > step_reduce:
                 keep_num = len(lines) - step_reduce
-                lines = random.sample(lines, keep_num)
+                lines = rng.sample(lines, keep_num)
                 prompt = "\n".join(lines)
             else:
                 print("Prompt too short, skipping this cluster")
@@ -88,74 +89,110 @@ def extract_profile(text):
     
     return profile_part
 
-data_dir = "data"
-output_file = "output.json"
 
-if os.path.exists(output_file):
-    os.remove(output_file)
+def parse_args():
+    parser = argparse.ArgumentParser(description="Summarize player profiles from clustered trajectory actions.")
+    parser.add_argument("--data-dir", default="data", help="Directory containing cluster subdirectories with actions.json.")
+    parser.add_argument("--output", default="output.jsonl", help="JSONL output path.")
+    parser.add_argument("--prompt-file", default="Cook_prompt.txt", help="Prompt template path.")
+    parser.add_argument("--model", default=os.environ.get("OPENAI_MODEL"), help="OpenAI-compatible model name.")
+    parser.add_argument("--api-base", default=os.environ.get("OPENAI_API_BASE"), help="OpenAI-compatible API base URL.")
+    parser.add_argument("--api-key", default=os.environ.get("OPENAI_API_KEY", "EMPTY"), help="API key.")
+    parser.add_argument("--seed", type=int, default=0, help="Random seed used when reducing overlong prompts.")
+    parser.add_argument("--max-attempts", type=int, default=5, help="Maximum API retry attempts per cluster.")
+    parser.add_argument("--step-reduce", type=int, default=5, help="Number of prompt lines removed after each failed call.")
+    return parser.parse_args()
 
-if not os.path.exists(data_dir):
-    print(f"Error: Data directory '{data_dir}' does not exist!")
-    exit(1)
 
-game_dirs = [d for d in os.listdir(data_dir) if os.path.isdir(os.path.join(data_dir, d))]
+def main():
+    args = parse_args()
 
-if not game_dirs:
-    print(f"Warning: No subdirectories found in '{data_dir}' directory!")
-    exit(1)
+    if not args.model:
+        raise SystemExit("Missing model. Pass --model or set OPENAI_MODEL.")
+    if not args.api_base:
+        raise SystemExit("Missing API base URL. Pass --api-base or set OPENAI_API_BASE.")
 
-response_list = []
+    with open(args.prompt_file, "r", encoding="utf-8") as f:
+        prompt_template = f.read()
 
-for game_dir in sorted(game_dirs):
-    actions_file = os.path.join(data_dir, game_dir, "actions.json")
-    
-    if not os.path.exists(actions_file):
-        print(f"Warning: actions.json not found in {game_dir}, skipping...")
-        continue
-    
-    try:
-        with open(actions_file, "r", encoding="utf-8") as f:
-            trajectory_data = json.load(f)
-        
-        if not isinstance(trajectory_data, list):
-            print(f"Warning: {game_dir}/actions.json is not a list, skipping...")
+    client = OpenAI(base_url=args.api_base, api_key=args.api_key)
+    rng = random.Random(args.seed)
+
+    if os.path.exists(args.output):
+        os.remove(args.output)
+
+    if not os.path.exists(args.data_dir):
+        raise SystemExit(f"Error: Data directory '{args.data_dir}' does not exist!")
+
+    game_dirs = [d for d in os.listdir(args.data_dir) if os.path.isdir(os.path.join(args.data_dir, d))]
+
+    if not game_dirs:
+        raise SystemExit(f"Warning: No subdirectories found in '{args.data_dir}' directory!")
+
+    response_list = []
+
+    for game_dir in sorted(game_dirs):
+        actions_file = os.path.join(args.data_dir, game_dir, "actions.json")
+
+        if not os.path.exists(actions_file):
+            print(f"Warning: actions.json not found in {game_dir}, skipping...")
             continue
-        
-        if len(trajectory_data) == 0:
-            print(f"Warning: No trajectory data in {game_dir}, skipping...")
-            continue
-        
-        trajectory_steps = format_trajectory_steps(trajectory_data, steps_per_example=3)
-        
-        if not trajectory_steps:
-            print(f"Warning: Empty trajectory for {game_dir}, skipping...")
-            continue
-        
-        response = try_send_prompt_random(trajectory_steps)
-        
-        if response is None:
-            print(f"Skipping {game_dir}: Failed to get response")
-            continue
-        
-        profile = extract_profile(response)
-        
-        result = {
-            "Game": game_dir,
-            "Profile": profile
-        }
-        
-        with open(output_file, "a+", encoding="utf-8") as f:
-            json.dump(result, f, ensure_ascii=False)
-            f.write("\n")
-        
-        print(f"Processed {game_dir}: {profile[:50]}...")
-        response_list.append(response)
-        
-    except Exception as e:
-        print(f"Error processing {game_dir}: {e}")
-        import traceback
-        traceback.print_exc()
-        continue
 
-print(f"\nProcessing complete! Results saved to {output_file}")
-print(f"Total processed: {len(response_list)} games")
+        try:
+            with open(actions_file, "r", encoding="utf-8") as f:
+                trajectory_data = json.load(f)
+
+            if not isinstance(trajectory_data, list):
+                print(f"Warning: {game_dir}/actions.json is not a list, skipping...")
+                continue
+
+            if len(trajectory_data) == 0:
+                print(f"Warning: No trajectory data in {game_dir}, skipping...")
+                continue
+
+            trajectory_steps = format_trajectory_steps(trajectory_data, steps_per_example=3)
+
+            if not trajectory_steps:
+                print(f"Warning: Empty trajectory for {game_dir}, skipping...")
+                continue
+
+            response = try_send_prompt_random(
+                trajectory_steps,
+                prompt_template,
+                client,
+                args.model,
+                rng,
+                max_attempts=args.max_attempts,
+                step_reduce=args.step_reduce,
+            )
+
+            if response is None:
+                print(f"Skipping {game_dir}: Failed to get response")
+                continue
+
+            profile = extract_profile(response)
+
+            result = {
+                "Game": game_dir,
+                "Profile": profile
+            }
+
+            with open(args.output, "a+", encoding="utf-8") as f:
+                json.dump(result, f, ensure_ascii=False)
+                f.write("\n")
+
+            print(f"Processed {game_dir}: {profile[:50]}...")
+            response_list.append(response)
+
+        except Exception as e:
+            print(f"Error processing {game_dir}: {e}")
+            import traceback
+            traceback.print_exc()
+            continue
+
+    print(f"\nProcessing complete! Results saved to {args.output}")
+    print(f"Total processed: {len(response_list)} games")
+
+
+if __name__ == "__main__":
+    main()

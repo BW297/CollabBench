@@ -70,9 +70,9 @@ def main(argv: Optional[List[str]] = None) -> int:
     ap = argparse.ArgumentParser(
         description="Export per-outdir trajectory-level mean intermediate stats for tuning (violations/n/gaps/msg penalty/tokens)."
     )
-    ap.add_argument("--base", default="coela_11/CoELA/evaluation", help="Directory containing out_* folders.")
+    ap.add_argument("--base", default="Evaluation/evaluation", help="Directory containing out_* folders.")
     ap.add_argument("--glob", default="out_*", help="Glob pattern under --base (default: out_*).")
-    ap.add_argument("--out-csv", default="coela_11/CoELA/evaluation/tuning_means.csv", help="Output CSV path.")
+    ap.add_argument("--out-csv", default="Evaluation/Judge/tools/tuning_means.csv", help="Output CSV path.")
     args = ap.parse_args(argv)
 
     base = _resolve_path(args.base)

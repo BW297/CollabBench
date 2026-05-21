@@ -42,20 +42,8 @@ if not os.path.exists(prompts_base):
     prompts_base = os.path.join(base_dir, '..', '..', 'prompts', 'proagent_prompts')
 PROMPT_DIR = prompts_base
 
-# Try to find openai_key.txt in various locations
-cwd = os.getcwd()
-possible_key_locations = [
-    os.path.join(cwd, "openai_key.txt"),
-    os.path.join(base_dir, "openai_key.txt"),
-    os.path.join(os.path.dirname(base_dir), "openai_key.txt"),
-]
-openai_key_file = None
-for loc in possible_key_locations:
-    if os.path.exists(loc):
-        openai_key_file = loc
-        break
-if openai_key_file is None:
-    openai_key_file = os.path.join(cwd, "openai_key.txt")  # Default fallback
+# API keys are read from OPENAI_API_KEY by default. For legacy local
+# experiments, OPENAI_API_KEYS may contain one key per line for rotation.
 
 NAME_TO_ACTION = {
 	"NORTH": Direction.NORTH,
@@ -83,9 +71,10 @@ class ProAgent(object):
 		self.key_rotation = True
 
 	def load_openai_keys(self):
-		with open(openai_key_file, "r") as f:
-			context = f.read()
-		self.openai_api_keys = context.split('\n')
+		context = os.environ.get("OPENAI_API_KEYS") or os.environ.get("OPENAI_API_KEY") or "EMPTY"
+		self.openai_api_keys = [k for k in context.split('\n') if k.strip()]
+		if not self.openai_api_keys:
+			self.openai_api_keys = ["EMPTY"]
 
 	def openai_api_key(self):
 		if self.key_rotation:
@@ -1662,4 +1651,3 @@ class ProMediumLevelAgent(ProAgent):
 class ProPlanningAgent(ProAgent):
 	def __init__(self, model="gpt-3.5-turbo-0301"):
 		super().__init__(model=model)
-

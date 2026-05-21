@@ -16,8 +16,8 @@ HUMAN_ID="${HUMAN_ID:-}"          # optional
 WORKERS="${WORKERS:-4}"
 MAX_FILES="${MAX_FILES:-}"        # optional
 MAX_CHARS="${MAX_CHARS:-2200}"
-A_WEIGHT="${A_WEIGHT:-1.0}"
-B_WEIGHT="${B_WEIGHT:-1.0}"
+A_WEIGHT="${A_WEIGHT:-0.8}"
+B_WEIGHT="${B_WEIGHT:-0.8}"
 # Optional per-dimension overrides (default: inherit A_WEIGHT/B_WEIGHT)
 A_HELPFULNESS="${A_HELPFULNESS:-}"
 B_HELPFULNESS="${B_HELPFULNESS:-}"
@@ -68,7 +68,7 @@ Options:
   --b-empathy FLOAT         (optional; default: --b)
   --resume | --no-resume    (default: resume)
   --cleanup | --no-cleanup  (default: cleanup)
-  --compare-csv PATH        (default: coela_11/CoELA/evaluation/cook/model_compare.csv)
+  --compare-csv PATH        (default: Evaluation/Judge/cook/model_compare.csv)
   --dry-run
   -h | --help
 
@@ -158,6 +158,7 @@ fi
 echo "[info] API_BASE=${API_BASE}"
 echo "[info] MODEL=${MODEL} WORKERS=${WORKERS} MAX_FILES=${MAX_FILES:-<unset>} MAX_CHARS=${MAX_CHARS} A=${A_WEIGHT} B=${B_WEIGHT} (A/B per-dim overrides: help=${A_HELPFULNESS:-<unset>}/${B_HELPFULNESS:-<unset>} trust=${A_TRUSTFULNESS:-<unset>}/${B_TRUSTFULNESS:-<unset>} emp=${A_EMPATHY:-<unset>}/${B_EMPATHY:-<unset>}) RESUME=${RESUME} CLEANUP=${CLEANUP}"
 
+valid_roots=0
 for dr in "${DATA_ROOTS[@]}"; do
   dr_norm="${dr%/}"
   if [[ "${dr_norm##*/}" == "actions" ]]; then
@@ -167,9 +168,14 @@ for dr in "${DATA_ROOTS[@]}"; do
     echo "[warn] skip missing data-root: ${dr_norm}"
     continue
   fi
+  valid_roots=$((valid_roots + 1))
   echo "[run] data-root=${dr_norm}"
   run_cmd python "${EVAL_DIR}/cook.py" run-pipeline --data-root "${dr_norm}" "${common_args[@]}"
 done
+
+if [[ "${valid_roots}" -eq 0 ]]; then
+  die "No valid Cook data roots found. Pass at least one existing --data-root PATH."
+fi
 
 echo "[info] Writing comparison CSV: ${COMPARE_CSV}"
 compare_args=( --base "${EVALP_DIR}" --glob "${COMPARE_GLOB}" --out-csv "${COMPARE_CSV}" --sort-by "${COMPARE_SORT_BY}" )

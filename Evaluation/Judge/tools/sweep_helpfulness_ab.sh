@@ -6,28 +6,29 @@ IFS=$'\n\t'
 # For each (a,b), this script:
 #   1) Re-aggregates trajectory + model_summary from existing `results_lite_obj.jsonl` (NO judge API calls)
 #   2) Exports paper tables (raw + norm) for BOTH environments:
-#        - coela_11/CoELA/evaluation (out_cwah-*)
-#        - coela_11/CoELA/evaluation/proagent (out_src-*)
+#        - Evaluation/evaluation (out_cwah-*)
+#        - Evaluation/Judge/cook (out_src-*)
 #   3) Writes outputs into per-setting folders under OUT_ROOT
 #
 # You can change defaults by exporting env vars before running, e.g.:
-#   OUT_ROOT=coela_11/CoELA/sweeps/help_ab GLOBAL_A=1.0 GLOBAL_B=1.0 bash coela_11/CoELA/evaluation/sweep_helpfulness_ab.sh
+#   OUT_ROOT=Evaluation/sweeps/help_ab GLOBAL_A=0.8 GLOBAL_B=0.8 bash Evaluation/Judge/tools/sweep_helpfulness_ab.sh
 
-ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"   # coela_11/CoELA
-EVAL_DIR="${ROOT_DIR}/evaluation"
-EVALP_DIR="${ROOT_DIR}/evaluation/proagent"
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
+JUDGE_DIR="${ROOT_DIR}/Evaluation/Judge"
+EVAL_DIR="${ROOT_DIR}/Evaluation/evaluation"
+EVALP_DIR="${ROOT_DIR}/Evaluation/Judge/cook"
 
 OUT_ROOT="${OUT_ROOT:-${ROOT_DIR}/sweeps/helpfulness_ab}"
 
 mkdir -p "${EVALP_DIR}"
 
 # Default coefficients for non-helpfulness dims (trust/empathy). Leave as-is unless you want to sweep them too.
-GLOBAL_A="${GLOBAL_A:-1.0}"
-GLOBAL_B="${GLOBAL_B:-1.0}"
+GLOBAL_A="${GLOBAL_A:-0.8}"
+GLOBAL_B="${GLOBAL_B:-0.8}"
 
-# Apply a trajectory-level penalty (max 1pt) when send_message ratio is below threshold.
-MSG_PENALTY_THRESHOLD="${MSG_PENALTY_THRESHOLD:-0.2}"
-MSG_PENALTY_MAX="${MSG_PENALTY_MAX:-1.0}"
+# Apply a trajectory-level penalty when send_message ratio is below threshold.
+MSG_PENALTY_THRESHOLD="${MSG_PENALTY_THRESHOLD:-0.15}"
+MSG_PENALTY_MAX="${MSG_PENALTY_MAX:-2.0}"
 MSG_PENALTY_K="${MSG_PENALTY_K:-4.0}"
 
 DEFAULT_HELP_VALUES=(0.6 0.7 0.8 0.9 1.0)
@@ -96,7 +97,7 @@ for a in "${HELP_A_VALUES_ARR[@]}"; do
     fi
 
     # Re-aggregate in-place (fast; overwrites trajectory/model_summary in out_* folders).
-    run_cmd python "${EVAL_DIR}/tools/llmjudge_reaggregate_outdirs.py" \
+    run_cmd python3 "${JUDGE_DIR}/tools/llmjudge_reaggregate_outdirs.py" \
       --base "${EVALP_DIR}" --glob 'out_src-*' \
       --a "${GLOBAL_A}" --b "${GLOBAL_B}" \
       --a-helpfulness "${a}" --b-helpfulness "${b}" \
@@ -105,7 +106,7 @@ for a in "${HELP_A_VALUES_ARR[@]}"; do
       --msg-penalty-k "${MSG_PENALTY_K}" \
       --fast
 
-    run_cmd python "${EVAL_DIR}/tools/llmjudge_reaggregate_outdirs.py" \
+    run_cmd python3 "${JUDGE_DIR}/tools/llmjudge_reaggregate_outdirs.py" \
       --base "${EVAL_DIR}" --glob 'out_cwah-*' \
       --a "${GLOBAL_A}" --b "${GLOBAL_B}" \
       --a-helpfulness "${a}" --b-helpfulness "${b}" \
@@ -117,13 +118,13 @@ for a in "${HELP_A_VALUES_ARR[@]}"; do
     # Export tables into the per-setting folder.
     # ProAgent paper table export can be slow; allow skipping via SKIP_PROAGENT_TABLE=true.
     if [[ "${SKIP_PROAGENT_TABLE:-false}" != "true" ]]; then
-      run_cmd python "${EVAL_DIR}/tools/llmjudge_export_paper_table.py" \
+      run_cmd python3 "${JUDGE_DIR}/tools/llmjudge_export_paper_table.py" \
         --base "${EVALP_DIR}" --glob 'out_src-*' \
         --out-csv-raw "${out_dir}/evaluate_proagent_final_paper_table_raw.csv" \
         --out-csv-norm "${out_dir}/evaluate_proagent_final_paper_table_norm.csv"
     fi
 
-    run_cmd python "${EVAL_DIR}/tools/llmjudge_export_paper_table.py" \
+    run_cmd python3 "${JUDGE_DIR}/tools/llmjudge_export_paper_table.py" \
       --base "${EVAL_DIR}" --glob 'out_cwah-*' \
       --out-csv-raw "${out_dir}/evaluation_final_paper_table_raw.csv" \
       --out-csv-norm "${out_dir}/evaluation_final_paper_table_norm.csv"

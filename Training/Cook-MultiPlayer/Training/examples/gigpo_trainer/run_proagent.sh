@@ -2,15 +2,14 @@ set -x
 ENGINE=${1:-vllm}
 export VLLM_ATTENTION_BACKEND=XFORMERS
 export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
-export WANDB_API_KEY=354e1d0ee17771243321187ec0d3ba7bcc1105d0
 export PYTHONBREAKPOINT=0
 export PROAGENT_DEBUG=0
-export WANDB_MODE=offline
+export WANDB_MODE="${WANDB_MODE:-offline}"
 export PYTHONPATH="agent_system/environments/env_package/proagent:${PYTHONPATH}"
 
 num_cpus_per_env_worker=0.5 # The CPU resource allocated for each environment worker. If you want to use less CPU resources, you can decrease this value.
 
-train_data_size=8
+train_data_size=4
 val_data_size=10
 group_size=8
 mode="mean_std_norm" # "mean_norm" or "mean_std_norm"
@@ -34,7 +33,7 @@ echo "Log file: $LOG_FILE"
 
 TRAIN_MODEL_PATH="YOUR_TRAIN_MODEL_PATH"
 COOK_URL="YOUR_TRAIN_URL"
-COOK_MODLE_ID="YOUR_TRAIN_MODLE_ID"
+COOK_MODEL_ID="YOUR_TRAIN_MODEL_ID"
 
 python3 -u -m verl.trainer.main_ppo \
     algorithm.adv_estimator=gigpo \
@@ -50,7 +49,7 @@ python3 -u -m verl.trainer.main_ppo \
     actor_rollout_ref.model.path=$TRAIN_MODEL_PATH  \
     actor_rollout_ref.actor.optim.lr=1e-6 \
     actor_rollout_ref.model.use_remove_padding=True \
-    actor_rollout_ref.actor.ppo_mini_batch_size=64 \
+    actor_rollout_ref.actor.ppo_mini_batch_size=32 \
     actor_rollout_ref.actor.ppo_micro_batch_size_per_gpu=8 \
     actor_rollout_ref.actor.use_kl_loss=True \
     actor_rollout_ref.actor.kl_loss_coef=0.01 \
@@ -72,16 +71,16 @@ python3 -u -m verl.trainer.main_ppo \
     actor_rollout_ref.actor.use_invalid_action_penalty=True \
     actor_rollout_ref.actor.invalid_action_penalty_coef=0.1 \
     algorithm.use_kl_in_reward=False \
-    algorithm.gamma=0.95 \
+    algorithm.gamma=0 \
     algorithm.gigpo.step_advantage_w=1.0 \
     algorithm.gigpo.mode=$mode \
     env.env_name=proagent \
     'env.proagent.layouts=[cramped_room,asymmetric_advantages,coordination_ring,counter_circuit,forced_coordination]' \
-    env.proagent.horizon=100 \
+    env.proagent.horizon=150 \
     env.proagent.p0=RL \
     env.proagent.p1=ProAgent \
     env.proagent.base_url=$COOK_URL \
-    env.proagent.lm_id=$COOK_MODLE_ID \
+    env.proagent.lm_id=$COOK_MODEL_ID \
     env.proagent.sampling_parameters.t=0.7 \
     env.proagent.sampling_parameters.max_tokens=4096 \
     env.proagent.sampling_parameters.top_p=1.0 \
@@ -96,7 +95,7 @@ python3 -u -m verl.trainer.main_ppo \
     env.proagent.sampling_parameters.big_five=Extraversion \
     env.proagent.sampling_parameters.level=Low \
     env.seed=0 \
-    env.max_steps=400 \
+    env.max_steps=150 \
     env.rollout.n=$group_size \
     env.resources_per_worker.num_cpus=$num_cpus_per_env_worker \
     trainer.critic_warmup=0 \
@@ -109,4 +108,3 @@ python3 -u -m verl.trainer.main_ppo \
     trainer.test_freq=5 \
     trainer.total_epochs=150 \
     trainer.val_before_train=False $@ 2>&1 | tee "$LOG_FILE"
-

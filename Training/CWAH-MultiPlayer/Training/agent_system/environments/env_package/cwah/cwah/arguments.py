@@ -1,4 +1,5 @@
 import argparse
+import os
 
 import torch
 import pdb
@@ -132,7 +133,7 @@ def get_args():
                         help='enabling big 5 personality role playing')
     parser.add_argument('--api_base', type=str, default=None, 
                         help='LLM key')
-    parser.add_argument('--api_key', type=str, default="sk-6fe2yfy7FpiNLfN9rZKhwijGuUiZdeuin060Hwm3dfDah7QM", 
+    parser.add_argument('--api_key', type=str, default=os.environ.get("OPENAI_API_KEY", "EMPTY"),
                         help='LLM api key')
     
     # LLM parameters

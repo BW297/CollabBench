@@ -68,7 +68,7 @@ Common re-run cases:
 - Model summary: Step7 only
 
 ## Cook-MultiPlayer
-Cook-MultiPlayer `actions.json` evaluation is handled by `cook.py` (outputs under `Running/Cook-MultiPlayer/src/actions`).
+Cook-MultiPlayer `actions.json` evaluation is handled by `cook.py`. By default, Cook outputs are written under `Evaluation/Judge/cook/out_<data_root_name>/`.
 
 ## Examples
 Quick multi-run scripts are provided (set API env vars before running):
@@ -130,13 +130,14 @@ python llmjudge.py score-prompts \
 ```
 
 4) Aggregate to trajectory scores (per dimension):
-- Formula: `score = 5 - a*(sum of penalties / n) - b*(max(5 - window_score))`, where `n` is #windows
+- Paper default formula: `score = 5 - a*(violation_count / n) - b*(max(5 - window_score)) - msg_penalty`, where `n` is #windows.
+- Paper default parameters: `a=0.8`, `b=0.8`, `msg_penalty_threshold=0.15`, `msg_penalty_k=4.0`, `msg_penalty_max=2.0`.
 ```bash
 python llmjudge.py aggregate-results \
   --results results_task0_lite.jsonl \
   --out trajectory_task0.jsonl \
   --out-csv trajectory_task0.csv \
-  --a 1.0 --b 1.0
+  --a 0.8 --b 0.8
 ```
 
 5) Export window-level CSV:
@@ -161,7 +162,7 @@ python llmjudge.py run-pipeline \
   --variant cwah-0-agent-1-human_deepseekduida \
   --agent-id 0 --human-id 1 \
   --api-base "$OPENAI_API_BASE" --model deepseek --api-key "$OPENAI_API_KEY" \
-  --workers 4 --resume --a 1.0 --b 1.0
+  --workers 4 --resume --a 0.8 --b 0.8
 ```
 
 Or specify runs directly (if outdir is omitted, it writes to `out_<runs parent>/`):
@@ -170,7 +171,7 @@ python llmjudge.py run-pipeline \
   --runs cwah-0-agent-1-human_deepseekduida/runs \
   --agent-id 0 --human-id 1 \
   --api-base "$OPENAI_API_BASE" --model deepseek --api-key "$OPENAI_API_KEY" \
-  --workers 4 --resume --a 1.0 --b 1.0
+  --workers 4 --resume --a 0.8 --b 0.8
 ```
 
 7) Model-level summary (mean over trajectories):
@@ -184,7 +185,7 @@ python llmjudge.py model-summary \
 8) Multi-model comparison (combine out_* into one table):
 ```bash
 python llmjudge.py compare-model-summaries \
-  --base evaluation --glob "out_*" \
+  --base Evaluation/evaluation --glob "out_*" \
   --out-csv model_compare.csv \
   --sort-by overall_of_dimension_means --descending
 ```

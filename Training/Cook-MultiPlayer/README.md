@@ -46,9 +46,10 @@ Before running the training script, you need to configure the following paramete
 
 - **`COOK_URL`**: Base URL for the LLM used by the ProAgent environment (p1 agent) during training, and by interactivity evaluation.
 
-- **`COOK_MODLE_ID`**: Model name for the LLM used by ProAgent (p1 agent) during training, and by interactivity evaluation.
+- **`COOK_MODEL_ID`**: Model name for the LLM used by ProAgent (p1 agent) during training, and by interactivity evaluation.
+
+The provided script follows the paper training setting for Cook-MultiPlayer: GiGPO, five Overcooked layouts, group size 8 with 4 groups per rollout (32 environments), maximum prompt length 4096, maximum response length 4096, learning rate `1e-6`, mini-batch size 32, `gamma=0`, and 150 environment steps per episode.
 
 ```bash
 bash examples/gigpo_trainer/run_proagent.sh
 ```
-

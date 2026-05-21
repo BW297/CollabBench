@@ -455,9 +455,6 @@ class InteractivityMetric:
         #     # "model": "claude-3-5-sonnet-latest",
         #     **llm_kwargs,
         # }
-        # self.lm_id = "dsv3.1"
-        # self.api_key = "9MLXuQfREaSBFi9YXDig4HHv8sqjPud+z2Lwveebho8="
-        # self.base_url = "https://jdkbm9aodmmecoq9h5jhkgg55hhdeg8b.openapi-sj.sii.edu.cn/v1"
         self.lm_id = llm_kwargs["lm_id"]
         self.api_key = llm_kwargs["api_key"]
         self.base_url = llm_kwargs["base_url"]
@@ -484,7 +481,9 @@ class InteractivityMetric:
         # ------------------------------------------------------------------ #
         # 1) Build chat history string                                       #
         # ------------------------------------------------------------------ #
-        interaction_history = f"Observation : {data_item.non_tensor_batch['raw_prompt'][0]['content'].strip('\n')}" + "\n" + f"Assistant : {self.tokenizer.decode(data_item.batch['responses'], skip_special_tokens=True)}"
+        observation = data_item.non_tensor_batch['raw_prompt'][0]['content'].strip()
+        assistant_text = self.tokenizer.decode(data_item.batch['responses'], skip_special_tokens=True)
+        interaction_history = f"Observation : {observation}\nAssistant : {assistant_text}"
 
         eval_prompt = INTERACTIVITY_PROMPT.format(interaction_history=interaction_history, user_profile=data_item.non_tensor_batch['profile_id'])
 

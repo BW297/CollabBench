@@ -350,7 +350,7 @@ def cmd_run_pipeline(argv: Optional[List[str]] = None) -> int:
     ap.add_argument(
         "--outdir",
         default=None,
-        help="Output directory. Default: evaluation/proagent/out_<data_root_name>.",
+        help="Output directory. Default: Evaluation/Judge/cook/out_<data_root_name>.",
     )
     ap.add_argument("--agent-id", type=int, default=None, help='Agent id under evaluation; selects actions.json key "0"/"1".')
     ap.add_argument("--human-id", type=int, default=None, help='Partner id; used for personality context (best-effort).')
@@ -360,8 +360,8 @@ def cmd_run_pipeline(argv: Optional[List[str]] = None) -> int:
     ap.add_argument("--workers", type=int, default=4)
     ap.add_argument("--max-files", type=int, default=None)
     ap.add_argument("--max-chars", type=int, default=2200)
-    ap.add_argument("--a", type=float, default=1.0)
-    ap.add_argument("--b", type=float, default=1.0)
+    ap.add_argument("--a", type=float, default=0.8)
+    ap.add_argument("--b", type=float, default=0.8)
     ap.add_argument("--a-helpfulness", type=float, default=None)
     ap.add_argument("--b-helpfulness", type=float, default=None)
     ap.add_argument("--a-trustfulness", type=float, default=None)
@@ -396,7 +396,7 @@ def cmd_run_pipeline(argv: Optional[List[str]] = None) -> int:
     if args.outdir:
         outdir = Path(args.outdir).expanduser().resolve()
     else:
-        outdir = (base / "proagent" / f"out_{data_root.name}").resolve()
+        outdir = (base / "cook" / f"out_{data_root.name}").resolve()
     outdir.mkdir(parents=True, exist_ok=True)
 
     windows_jsonl = str(outdir / "windows.jsonl")
@@ -589,11 +589,11 @@ def cmd_run_pipeline(argv: Optional[List[str]] = None) -> int:
 
 
 def _print_main_help() -> None:
-    print("Usage: python evaluation/proagent.py <command> [args]")
+    print("Usage: python cook.py <command> [args]")
     print("Commands:")
     print("  - build-windows")
     print("  - run-pipeline")
-    print("Run: python evaluation/proagent.py <command> --help")
+    print("Run: python cook.py <command> --help")
 
 
 def main(argv: Optional[List[str]] = None) -> int:

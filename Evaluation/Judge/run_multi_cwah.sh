@@ -2,8 +2,10 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"          
-EVAL_DIR="${ROOT_DIR}/evaluation"                                    
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ROOT_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
+EVAL_DIR="${SCRIPT_DIR}"
+OUT_BASE="${ROOT_DIR}/evaluation"
 
 #######################################
 # USER CONFIG (optional)
@@ -20,12 +22,12 @@ AGENT_ID="${AGENT_ID:-0}"
 HUMAN_ID="${HUMAN_ID:-1}"
 
 # Where to write the final multi-model comparison CSV
-COMPARE_CSV="${COMPARE_CSV:-${EVAL_DIR}/model_compare.csv}"
+COMPARE_CSV="${COMPARE_CSV:-${OUT_BASE}/model_compare.csv}"
 
 # Optional knobs (can be omitted; pipeline has its own defaults)
 WORKERS="${WORKERS:-4}"             # e.g. 4 / 8 / 16
-A_WEIGHT="${A_WEIGHT:-1.0}"
-B_WEIGHT="${B_WEIGHT:-1.0}"
+A_WEIGHT="${A_WEIGHT:-0.8}"
+B_WEIGHT="${B_WEIGHT:-0.8}"
 MAX_FILES="${MAX_FILES:-}"          # e.g. 50
 MAX_CHARS="${MAX_CHARS:-2200}"
 RESUME="${RESUME:-true}"            # true/false
@@ -52,7 +54,7 @@ RUNS_DIRS=()
 usage() {
   cat <<'EOF'
 Usage:
-  bash evaluation/run_multi_cwah.sh
+  bash run_multi_cwah.sh
 
 Options:
   --api-base URL
@@ -66,7 +68,7 @@ Options:
   --max-files N
   --max-chars N
   --resume | --no-resume
-  --variant PATH          (repeatable; relative to cook_11/cook)
+  --variant PATH          (repeatable; relative to Evaluation/)
   --runs PATH             (repeatable; explicit runs dir)
   --compare-csv PATH
   --compare-glob GLOB
@@ -165,8 +167,13 @@ if [[ ${#CLI_VARIANTS[@]} -gt 0 && ${#CLI_RUNS[@]} -gt 0 ]]; then
   die "Provide only one of: --variant ... OR --runs ..."
 fi
 
+if [[ ${#CLI_VARIANTS[@]} -eq 0 && ${#CLI_RUNS[@]} -eq 0 && ${#VARIANTS[@]} -eq 0 && ${#RUNS_DIRS[@]} -eq 0 ]]; then
+  die "No CWAH inputs configured. Pass --variant PATH or --runs PATH."
+fi
+
 echo "[info] ROOT_DIR=${ROOT_DIR}"
 echo "[info] EVAL_DIR=${EVAL_DIR}"
+echo "[info] OUT_BASE=${OUT_BASE}"
 echo "[info] API_BASE=${API_BASE}"
 echo "[info] MODEL=${MODEL}"
 echo "[info] WORKERS=${WORKERS} A=${A_WEIGHT} B=${B_WEIGHT} RESUME=${RESUME}"
@@ -262,7 +269,7 @@ else
 fi
 
 compare_args=(
-  --base "${EVAL_DIR}"
+  --base "${OUT_BASE}"
   --glob "${COMPARE_GLOB}"
   --out-csv "${COMPARE_CSV}"
 )

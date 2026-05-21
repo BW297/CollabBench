@@ -186,7 +186,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     ap.add_argument(
         "--bases",
         nargs="+",
-        default=["coela_11/CoELA/evaluation", "coela_11/CoELA/evaluation/proagent"],
+        default=["Evaluation/evaluation", "Evaluation/Judge/cook"],
         help="Base dirs containing out_* folders (used to compute env-step stats).",
     )
     ap.add_argument("--glob", default="out_*")
@@ -223,4 +223,3 @@ def main(argv: Optional[List[str]] = None) -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

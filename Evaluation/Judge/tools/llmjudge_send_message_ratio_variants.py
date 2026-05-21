@@ -78,9 +78,9 @@ def main(argv: Optional[List[str]] = None) -> int:
     ap = argparse.ArgumentParser(
         description="Compute per-variant send_message ratio (high-level action via LLM `plan`) across all cwah-* variants that contain runs/ logs."
     )
-    ap.add_argument("--base", default="coela_11/CoELA", help="Base directory containing cwah-* variant folders.")
+    ap.add_argument("--base", default="Evaluation", help="Base directory containing cwah-* variant folders.")
     ap.add_argument("--glob", default="cwah-*", help="Glob under --base to search for variants (default: cwah-*).")
-    ap.add_argument("--out-csv", default="coela_11/CoELA/evaluation/send_message_ratio_variants.csv")
+    ap.add_argument("--out-csv", default="Evaluation/Judge/tools/send_message_ratio_variants.csv")
     ap.add_argument("--max-files", type=int, default=None, help="Limit number of log files per variant.")
     args = ap.parse_args(argv)
 
@@ -237,4 +237,3 @@ def main(argv: Optional[List[str]] = None) -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

@@ -14,7 +14,7 @@ timestamp=$(date +%Y%m%d_%H%M%S)
 
 TRAIN_MODEL_PATH="YOUR_TRAIN_MODEL_PATH"
 CWAH_URL="YOUR_TRAIN_URL"
-CWAH_MODLE_ID="YOUR_TRAIN_MODLE_ID"
+CWAH_MODEL_ID="YOUR_TRAIN_MODEL_ID"
 # We only use data preparation to indicate the modality and the data size.
 python3 -m examples.data_preprocess.prepare \
     --mode 'text' \
@@ -68,7 +68,7 @@ python3 -m verl.trainer.main_ppo \
     algorithm.gigpo.mode=$mode \
     env.env_name=cwah \
     env.cwah.base_url=$CWAH_URL \
-    env.cwah.lm_id=$CWAH_MODLE_ID \
+    env.cwah.lm_id=$CWAH_MODEL_ID \
     env.cwah.sampling_parameters.max_tokens=4096 \
     env.seed=0 \
     env.max_steps=50 \

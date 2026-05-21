@@ -193,7 +193,12 @@ class ChatCompletionScheduler:
         await callback(completions, callback_additional_info, exception)
 
     async def _chat_completions_openai(self, address: str, **chat_complete_request) -> ChatCompletion:
-        client = AsyncOpenAI(base_url=f"http://{address}/v1", api_key="token-abc123", timeout=None, max_retries=0)
+        client = AsyncOpenAI(
+            base_url=f"http://{address}/v1",
+            api_key=os.environ.get("OPENAI_API_KEY", "EMPTY"),
+            timeout=None,
+            max_retries=0,
+        )
         return await client.chat.completions.create(**chat_complete_request)
 
     async def _chat_completions_aiohttp(self, address: str, **chat_complete_request) -> ChatCompletion:

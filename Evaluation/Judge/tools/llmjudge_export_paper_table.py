@@ -181,7 +181,7 @@ def _extract_output_text(llm_entry: Any) -> Optional[str]:
 
 
 def _get_proagent_root() -> Optional[Path]:
-    # Repo layout: <repo>/coela_11/CoELA/evaluation/this_file.py, and <repo>/ProAgent_1221 exists.
+    # Legacy ProAgent result layout, if present next to this repository.
     repo_root = Path(__file__).resolve().parents[3]
     p = repo_root / "ProAgent_1221"
     return p if p.exists() else None
@@ -485,7 +485,7 @@ def _trajectory_env_steps_per_traj_from_actions(traj_jsonl: Path) -> List[float]
 
 def main(argv: Optional[List[str]] = None) -> int:
     ap = argparse.ArgumentParser(description="Export paper-style comparison table for CWAH evaluation outdirs.")
-    ap.add_argument("--base", default="coela_11/CoELA/evaluation", help="Evaluation directory containing out_* folders.")
+    ap.add_argument("--base", default="Evaluation/evaluation", help="Evaluation directory containing out_* folders.")
     ap.add_argument("--glob", default="out_cwah-*", help="Glob pattern to scan under --base.")
     ap.add_argument(
         "--out-csv",

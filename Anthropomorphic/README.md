@@ -22,7 +22,7 @@ The summarization process:
 │   ├── Cluster2/         # Cluster 2
 │   │   └── actions.json
 │   └── ...
-└── output.json          # Generated profile summaries
+└── output.jsonl         # Generated profile summaries, one JSON object per line
 ```
 
 ## Data Format
@@ -94,9 +94,16 @@ Create `actions.json` in each cluster folder as a **list** of trajectory steps:
 ### Step 4: Run Summarization
 
 ```bash
-python summarize.py
+export OPENAI_API_BASE="http://<host>:<port>/v1"
+export OPENAI_API_KEY="..."
+export OPENAI_MODEL="..."
+
+python summarize.py \
+  --data-dir data \
+  --prompt-file Cook_prompt.txt \
+  --output output.jsonl
 ```
 
 ## Prompt Template
 
-The prompt template is stored in `Cook_prompt.txt` and `CWAH_prompt.txt`. You can choose the appropriate prompt based on the game environment. The prompt uses `$trajectory_steps` as a placeholder that will be replaced with the formatted trajectory data during execution.
+The prompt template is stored in `Cook_prompt.txt` and `CWAH_prompt.txt`. Choose the appropriate prompt with `--prompt-file` based on the game environment. The prompt uses `$trajectory_steps` as a placeholder that will be replaced with the formatted trajectory data during execution.

@@ -246,8 +246,8 @@ def main(argv: Optional[List[str]] = None) -> int:
     )
     ap.add_argument("--base", required=True, help="Directory containing many out_* folders.")
     ap.add_argument("--glob", default="out_*", help='Glob pattern under --base (default: "out_*").')
-    ap.add_argument("--a", type=float, default=1.0, help="Default a (viol_count/n) coefficient.")
-    ap.add_argument("--b", type=float, default=1.0, help="Default b (worst gap) coefficient.")
+    ap.add_argument("--a", type=float, default=0.8, help="Default a (viol_count/n) coefficient.")
+    ap.add_argument("--b", type=float, default=0.8, help="Default b (worst gap) coefficient.")
     ap.add_argument("--a-helpfulness", type=float, default=None)
     ap.add_argument("--b-helpfulness", type=float, default=None)
     ap.add_argument("--a-trustfulness", type=float, default=None)
@@ -255,7 +255,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     ap.add_argument("--a-empathy", type=float, default=None)
     ap.add_argument("--b-empathy", type=float, default=None)
     ap.add_argument("--msg-penalty-threshold", type=float, default=0.15)
-    ap.add_argument("--msg-penalty-max", type=float, default=1.0)
+    ap.add_argument("--msg-penalty-max", type=float, default=2.0)
     ap.add_argument("--msg-penalty-k", type=float, default=4.0)
     ap.add_argument(
         "--global-send-message-csv",

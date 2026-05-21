@@ -26,16 +26,16 @@ Then install and configure the CWAH-MultiPlayer running environment (VirtualHome
 
 - **[CWAH-MultiPlayer](../../Evaluation/Running/CWAH-MultiPlayer/README.md)** — VirtualHome clone, executable download, conda env, and dependencies.
 
-First go into `Train/agent_system/environments/env_package/cwah`, then install and configure according to the CWAH-MultiPlayer (Running) README.
+First go into `Training/agent_system/environments/env_package/cwah`, then install and configure according to the CWAH-MultiPlayer (Running) README.
 
 ```bash
-cd Train/agent_system/environments/env_package/cwah
+cd Training/agent_system/environments/env_package/cwah
 # Then install and configure according to the CWAH-MultiPlayer (Running) README
 ```
 Ensure the final directory layout includes the game engine files and executables:
 
 ```bash
-├── Train/agent_system/environments/env_package/cwah/
+├── Training/agent_system/environments/env_package/cwah/
 │   ├── cwah/                 
 │   ├── executable/ 
 │   ├── virtualhome/                
@@ -62,7 +62,7 @@ Before running the training script, you need to configure the following paramete
 
 - **`CWAH_URL`**: Base URL for the LLM used by the ProAgent environment (p1 agent) during training, and by interactivity evaluation.
 
-- **`CWAH_MODLE_ID`**: Model name for the LLM used by ProAgent (p1 agent) during training, and by interactivity evaluation.
+- **`CWAH_MODEL_ID`**: Model name for the LLM used by ProAgent (p1 agent) during training, and by interactivity evaluation.
 
 ```bash
 bash examples/gigpo_trainer/run_cwah.sh

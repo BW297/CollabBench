@@ -1,0 +1,9 @@
+__pycache__/
+*.py[cod]
+*$py.class
+
+.env
+.env.*
+!.env.example
+openai_key.txt
+repro_review_worklog.md
