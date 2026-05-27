@@ -48,7 +48,7 @@ We propose **CollabBench**, a benchmark for **systematically evaluating and trai
 - [Player Trajectory Demonstration](#4️⃣-player-trajectory-demonstration)
 - [Citation](#-citation)
 
-
+---
 
 ## 1️⃣ Diverse Player Profiles Simulation
 
@@ -159,7 +159,7 @@ We visualize representative trajectories for **five typical player types** (GIF 
 
 ![gif-13](figure/13/gif-13.gif "Independent Loner")
 
-
+---
 ## 💭 Citation
 
 If you find this repository useful in your research, please cite:
