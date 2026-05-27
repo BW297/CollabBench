@@ -19,8 +19,8 @@
 
 <p>
   East China Normal University<br>
-  Tencent Inc.<br>
-  Shanghai Innovation Institute
+  Shanghai Innovation Institute<br>
+  Tencent Inc.
 </p>
 
 <p>
@@ -168,7 +168,7 @@ If you find this repository useful in your research, please cite:
 @inproceedings{CollabBench2026,
   author = {Hong Qian and Yuanhao Liu and Zihan Zhou and Zongbao Zhang and Hanjie Ge and Haotian Shi and Liang Dou and Xiangfeng Wang and Jingwen Yang and Aimin Zhou},
   title = {CollabBench: Benchmarking and Unleashing the Collaborative Ability of LLMs with Diverse Players via Proactive Engagement},
-  booktitle = {Proceedings of the 43rd International Conference on Machine Learning},
+  booktitle = {Proceedings of the 43rd International Conference on Machine Learning (ICML)},
   year = {2026},
   address = {Seoul, South Korea}
 }
@@ -176,4 +176,4 @@ If you find this repository useful in your research, please cite:
 
 Reference:
 
-> Hong Qian, Yuanhao Liu, Zihan Zhou, Zongbao Zhang, Hanjie Ge, Haotian Shi, Liang Dou, Xiangfeng Wang, Jingwen Yang, and Aimin Zhou. CollabBench: Benchmarking and Unleashing the Collaborative Ability of LLMs with Diverse Players via Proactive Engagement. In Proceedings of the 43rd International Conference on Machine Learning, 2026.
+> Hong Qian, Yuanhao Liu, Zihan Zhou, Zongbao Zhang, Hanjie Ge, Haotian Shi, Liang Dou, Xiangfeng Wang, Jingwen Yang, and Aimin Zhou. CollabBench: Benchmarking and Unleashing the Collaborative Ability of LLMs with Diverse Players via Proactive Engagement. In Proceedings of the 43rd International Conference on Machine Learning (ICML), 2026.
